@@ -1,4 +1,4 @@
-package com.java.com.product.model;
+package services.product.model;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
