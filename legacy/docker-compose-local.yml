@@ -1,0 +1,34 @@
+version: '3.2'
+services:
+  legacywebshop:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "8888:8080"
+    networks:
+      local_dev_net:
+          aliases:
+              - legacywebshop
+
+  web-shop-db-image:
+    build:
+      context: ./
+      dockerfile: ./docker/DockerfileMySQL
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
+      MYSQL_DATABASE: webshop
+      MYSQL_USER: webshopuser
+      MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
+    ports:
+      - "3306:3306"
+    networks:
+        local_dev_net:
+            aliases:
+                - web-shop-db-image
+
+networks:
+  local_dev_net:
+    driver: bridge
