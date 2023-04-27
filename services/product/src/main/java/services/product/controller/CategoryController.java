@@ -33,7 +33,7 @@ public class CategoryController {
         return categoryRepositroy.findAll();
     }
 
-    @PostMapping(value="/test",consumes = "application/json")
+    @PostMapping(consumes = "text/plain")
     public ResponseEntity<Category> handlePostRequest(@RequestBody String name) {
 
         if(categoryRepositroy.existsByName(name)){
