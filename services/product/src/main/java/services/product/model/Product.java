@@ -23,6 +23,16 @@ public class Product {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Category category;
 
+    public Product() {
+    }
+
+    public Product(String name, String details, double price, Category category) {
+        this.name = name;
+        this.details = details;
+        this.price = price;
+        this.category = category;
+    }
+
     public Long getId() {
         return id;
     }
