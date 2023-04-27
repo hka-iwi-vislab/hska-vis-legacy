@@ -12,7 +12,7 @@ services:
   web-shop-db-image:
     image: mavogel/hska-vis-web-shop-db-image
     volumes:
-      - "./.data/db:/var/lib/mysql"
+      - db-data:/var/lib/mysql:rw
     environment:
       MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
       MYSQL_DATABASE: webshop
@@ -28,3 +28,6 @@ services:
 networks:
   local_dev_net:
     driver: bridge
+
+volumes:
+  db-data:
