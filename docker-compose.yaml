@@ -31,7 +31,9 @@ services:
       - local_dev_net
 
   legacywebshop:
-    image: mavogel/hska-vis-legacywebshop
+    build:
+      context: ./legacy
+      dockerfile: docker/Dockerfile
     ports:
       - "8888:8080"
     networks:
