@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +48,16 @@ public class CategoryController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
         .buildAndExpand(newCategory.getId()).toUri();
         return ResponseEntity.created(location).body(newCategory);
+    }
+
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<Void> handleDeleteRequest(@PathVariable Long id) {
+        if(!categoryRepositroy.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
+
+        categoryRepositroy.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
