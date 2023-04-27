@@ -7,8 +7,10 @@ import javax.persistence.*;
 public class Category {
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
     public Category(){}
