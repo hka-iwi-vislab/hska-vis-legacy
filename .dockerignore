@@ -1,6 +1,0 @@
-.git/
-target/
-.vscode
-
-# optional
-*.yml
