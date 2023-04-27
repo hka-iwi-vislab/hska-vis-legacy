@@ -1,4 +1,4 @@
-package services.product;
+package services.product.controller;
 
 import java.util.List;
 
