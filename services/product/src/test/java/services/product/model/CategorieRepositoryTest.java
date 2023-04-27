@@ -17,6 +17,7 @@ public class CategorieRepositoryTest {
     @Autowired 
     private CategoryRepository categoryRepositroy;
     
+    @Test
     public void saveOne_GetOne(){
         
         categoryRepositroy.save(CategorieFixtures.Technik);
