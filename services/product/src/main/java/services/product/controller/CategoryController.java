@@ -2,6 +2,7 @@ package services.product.controller;
 
 import java.io.Console;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import services.product.model.CategoryRepository;
+import services.product.model.ProductRepository;
+
+import services.product.model.Product;
 import services.product.model.Category;
 
 
@@ -28,6 +32,9 @@ public class CategoryController {
 
     @Autowired
     private CategoryRepository categoryRepositroy;
+
+    @Autowired
+    private ProductRepository productRepository;
     
     @GetMapping(path = "")
     public List<Category> getAllCategories(){
@@ -48,6 +55,22 @@ public class CategoryController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
         .buildAndExpand(newCategory.getId()).toUri();
         return ResponseEntity.created(location).body(newCategory);
+    }
+
+    @GetMapping(path = "/{id}/products")
+    public ResponseEntity<List<Product>> getProductsOfCategory(@PathVariable Long id){
+        Optional<Category> requestedCategory = categoryRepositroy.findById(id);
+        
+        if(requestedCategory.isPresent()){
+            Optional<List<Product>> productsInCategory =  productRepository.findByCategory(requestedCategory.get());
+            if(productsInCategory.isPresent()){
+                return ResponseEntity.ok(productsInCategory.get());
+            } else{
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+        } else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @DeleteMapping(value="/{id}")

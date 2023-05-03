@@ -7,11 +7,21 @@ import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 
 import java.util.List;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+
 public class CategoryManagerImpl implements CategoryManager{
 	private CategoryDAO helper;
+
+	private static final String REST_URI = "http://localhost:8081/api/v1/categories";
+
+	private Client client;
 	
 	public CategoryManagerImpl() {
 		helper = new CategoryDAO();
+
+		client = ClientBuilder.newClient();
+		
 	}
 
 	public List<Category> getCategories() {
