@@ -17,37 +17,36 @@ public class Role implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
-	private int id;
+	private Long id;
 
 	@Column(name = "type")
-	private String typ;
-	
-	
-	@Column(name = "level1")
+	private String type;
+
+	@Column(name = "level")
 	private int level;
 
 	public Role() {
 	}
 
 	public Role(String typ, int level) {
-		this.typ = typ;
+		this.type = typ;
 		this.level = level;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getTyp() {
-		return this.typ;
+	public String getType() {
+		return this.type;
 	}
 
-	public void setTyp(String typ) {
-		this.typ = typ;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public int getLevel() {
@@ -59,4 +58,3 @@ public class Role implements java.io.Serializable {
 	}
 
 }
-

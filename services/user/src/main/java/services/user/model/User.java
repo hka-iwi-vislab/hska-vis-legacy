@@ -14,30 +14,25 @@ public class User implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
-	private int id;
+	private Long id;
 
-	
 	@Column(name = "username", unique = true, nullable = false)
 	private String username;
 
-	
 	@Column(name = "name", nullable = false)
 	private String firstname;
 
-	
 	@Column(name = "lastname", nullable = false)
 	private String lastname;
 
-	
 	@Column(name = "password", nullable = false)
 	private String password;
 
 	@ManyToOne()
-	@JoinColumn(name = "role", nullable = false)	
+	@JoinColumn(name = "role", nullable = false)
 	private Role role;
 
 	public User() {
@@ -52,11 +47,11 @@ public class User implements java.io.Serializable {
 		this.role = role;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -5,45 +5,50 @@ public class RegisterRequest {
     private String password;
     private String firstName;
     private String lastName;
-    private Role role;
+    private Long roleId;
 
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
-    
-    public void setUsername(String username){
+
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getFirstName(){
+    public String getFirstname() {
         return firstName;
     }
-    
-    public void setFirsName(String firstName){
+
+    public void setFirsname(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastName(){
+    public String getLastname() {
         return lastName;
     }
-    
-    public void setLastName(String lastName){
+
+    public void setLastname(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
-    
-    public void setPassword(String password){
+
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public Role getRole(){
-        return role;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-    
-    public void setRole(Role role){
-        this.role = role;
+
+    public Long getRoleId() {
+        return roleId;
     }
+
+    public void setRoleId(Long id) {
+        this.roleId = id;
+    }
+
 }
