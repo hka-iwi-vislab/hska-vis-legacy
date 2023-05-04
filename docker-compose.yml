@@ -19,11 +19,37 @@ services:
       MYSQL_USER: webshopuser
       MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
     ports:
-      - "3306:3306"
+      - "3406:3406"
     networks:
         local_dev_net:
             aliases:
                 - web-shop-db-image
+
+  categories:
+    container_name: categories
+    build:
+      context: categories/categories
+      dockerfile: Dockerfile
+    image: vsys:categories
+    ports:
+      - "8082:8082"
+    networks:
+      local_dev_net:
+        aliases:
+          - categories-service
+
+  customer:
+    container_name: products
+    build:
+      context: products/products
+      dockerfile: Dockerfile
+    image: vsys:products
+    ports:
+      - "8081:8081"
+    networks:
+      local_dev_net:
+        aliases:
+          - products-service
 
 networks:
   local_dev_net:

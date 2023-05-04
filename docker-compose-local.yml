@@ -2,8 +2,8 @@ version: '3.2'
 services:
   legacywebshop:
     build:
-      context: ./
-      dockerfile: ./docker/Dockerfile
+      context: ..
+      dockerfile: docker/Dockerfile
     ports:
       - "8888:8080"
     networks:
@@ -13,8 +13,8 @@ services:
 
   web-shop-db-image:
     build:
-      context: ./
-      dockerfile: ./docker/DockerfileMySQL
+      context: ..
+      dockerfile: docker/DockerfileMySQL
     volumes:
       - "./.data/db:/var/lib/mysql"
     environment:
