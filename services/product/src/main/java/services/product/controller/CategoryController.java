@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -87,11 +88,16 @@ public class CategoryController {
         }
     }
 
+    @Transactional
     @DeleteMapping(value="/{id}")
     public ResponseEntity<Void> handleDeleteRequest(@PathVariable Long id) {
         if (!categoryRepositroy.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
+
+        Category category = categoryRepositroy.getById(id);
+        
+        productRepository.deleteByCategory(category);
 
         categoryRepositroy.deleteById(id);
         return ResponseEntity.noContent().build();

@@ -80,8 +80,9 @@ public class ProductManagerImpl implements ProductManager {
 				.toEntity(Product.class)
 				.block();
 
+		System.out.println(response);
 		if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-
+			
 			Product newProduct = response.getBody();
 
 			if (newProduct != null) {
