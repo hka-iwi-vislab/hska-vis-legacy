@@ -1,23 +1,12 @@
-package services.product.model;
+package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
-import java.util.List;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name="category")
-public class Category {
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
+public class CategoryHelper{
     private Long id;
-
-    @Column(name = "name")
     private String name;
 
-    public Category(){}
+    public CategoryHelper(){}
 
-    public Category(Long id, String name){
+    public CategoryHelper(Long id, String name){
         this.id = id;
         this.name = name;
     }
