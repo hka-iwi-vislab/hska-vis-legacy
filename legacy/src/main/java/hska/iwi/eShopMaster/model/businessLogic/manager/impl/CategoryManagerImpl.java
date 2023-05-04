@@ -39,9 +39,10 @@ public class CategoryManagerImpl implements CategoryManager {
 
 	public List<Category> getCategories() {
 		Mono<List<Category>> categories = webClient.get()
-										.retrieve()
-										.bodyToMono(new ParameterizedTypeReference<List<Category>>() {});
-		
+				.retrieve()
+				.bodyToMono(new ParameterizedTypeReference<List<Category>>() {
+				});
+
 		return categories.block();
 
 	}
@@ -60,7 +61,7 @@ public class CategoryManagerImpl implements CategoryManager {
 	public void addCategory(String name) {
 		Mono<ResponseEntity<Category>> newCategory = webClient.post().contentType(MediaType.TEXT_PLAIN)
 				.body(BodyInserters.fromValue(name)).retrieve().toEntity(Category.class);
-		
+
 		newCategory.block();
 	}
 

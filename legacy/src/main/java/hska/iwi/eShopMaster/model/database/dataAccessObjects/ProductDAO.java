@@ -53,5 +53,7 @@ public class ProductDAO extends GenericHibernateDAO<Product, Integer> {
 	    return productList;
 	}
 
+
+
 	
 }

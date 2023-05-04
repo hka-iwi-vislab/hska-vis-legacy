@@ -76,7 +76,7 @@ public class CategoryController {
         Optional<Category> requestedCategory = categoryRepositroy.findById(id);
         
         if(requestedCategory.isPresent()){
-            Optional<List<Product>> productsInCategory =  productRepository.findByCategory(requestedCategory.get());
+            Optional<List<Product>> productsInCategory =  productRepository.findAllByCategory(requestedCategory.get());
             if(productsInCategory.isPresent()){
                 return ResponseEntity.ok(productsInCategory.get());
             } else{

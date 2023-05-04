@@ -1,8 +1,8 @@
 package hska.iwi.eShopMaster.model.businessLogic.manager;
 
-import hska.iwi.eShopMaster.model.database.dataobjects.Product;
-
 import java.util.List;
+
+import hska.iwi.eShopMaster.model.database.dataobjects.Product;
 
 public interface ProductManager {
 

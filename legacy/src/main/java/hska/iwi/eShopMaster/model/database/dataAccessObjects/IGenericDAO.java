@@ -1,7 +1,6 @@
 package hska.iwi.eShopMaster.model.database.dataAccessObjects;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 
 
