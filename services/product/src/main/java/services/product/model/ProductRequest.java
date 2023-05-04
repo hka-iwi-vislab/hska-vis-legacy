@@ -1,7 +1,5 @@
 package services.product.model;
 
-import javax.persistence.Entity;
-
 public class ProductRequest {
     private String name;
     private String details;

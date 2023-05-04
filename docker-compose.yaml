@@ -1,50 +1,87 @@
 version: '3.8'
 
 services:
-  spring-boot-app:
-    container_name: spring-boot-app
-    build:
-      context: ./services/product
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8080"
-    depends_on:
-      - db
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
-    networks:
-      - local_dev_net
-
-  db:
-    container_name: postgres
-    image: postgres
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
-    ports:
-      - "5432:5432"
-    networks:
-      - local_dev_net
-
   legacywebshop:
     build:
       context: ./legacy
       dockerfile: docker/Dockerfile
     ports:
       - "8888:8080"
+    depends_on:
+      - web-shop-db-image
     networks:
-      local_dev_net:
-          aliases:
-              - legacywebshop
+      - backend
+
+  product_service:
+    container_name: product_service_container
+    build:
+      context: ./services/product
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    depends_on:
+      - product_db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://product_db:5432/products
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - backend
+
+  user_service:
+    container_name: user_service_container
+    build:
+      context: ./services/user
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
+    depends_on:
+      - user_db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://user_db:5432/users
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - backend
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  product_db:
+    container_name: product_db_postgres
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=products
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    volumes:
+      - product-db-data:/var/lib/postgresql/data
+
+  user_db:
+    container_name: user_db_postgres
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=users
+    ports:
+      - "5433:5432"
+    networks:
+      - backend
+    volumes:
+      - user-db-data:/var/lib/postgresql/data
+
 
   web-shop-db-image:
     image: mavogel/hska-vis-web-shop-db-image
     volumes:
-      - db-data:/var/lib/mysql:rw
+      - legacy-db-data:/var/lib/mysql:rw
     environment:
       MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
       MYSQL_DATABASE: webshop
@@ -53,13 +90,14 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - local_dev_net
+      - backend
 
 
 networks:
-  local_dev_net:
+  backend:
     driver: bridge
-
+    
 volumes:
-  db-data:
-
+  legacy-db-data:
+  user-db-data:
+  product-db-data:
