@@ -1,55 +1,77 @@
 package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
-
 import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.database.dataAccessObjects.CategoryDAO;
 import hska.iwi.eShopMaster.model.database.dataobjects.Category;
+import reactor.core.publisher.Mono;
 
+import java.io.Console;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
+import org.springframework.core.ParameterizedTypeReference;
 
-public class CategoryManagerImpl implements CategoryManager{
-	private CategoryDAO helper;
+// import javax.ws.rs.client.Client;
+// import javax.ws.rs.client.ClientBuilder;
+// import javax.ws.rs.core.GenericType;
+// import javax.ws.rs.core.MediaType;
+// import javax.ws.rs.core.Response;
 
-	private static final String REST_URI = "http://localhost:8081/api/v1/categories";
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.reactive.function.BodyInserter;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
-	private Client client;
-	
+public class CategoryManagerImpl implements CategoryManager {
+
+	private static final String REST_URI = "http://host.docker.internal:8081/api/v1/categories";
+
+	private WebClient webClient;
+
 	public CategoryManagerImpl() {
-		helper = new CategoryDAO();
 
-		client = ClientBuilder.newClient();
-		
+		webClient = WebClient.create(REST_URI);
+
 	}
 
 	public List<Category> getCategories() {
-		return helper.getObjectList();
+		Mono<List<Category>> categories = webClient.get()
+										.retrieve()
+										.bodyToMono(new ParameterizedTypeReference<List<Category>>() {});
+		
+		return categories.block();
+
 	}
 
 	public Category getCategory(int id) {
-		return helper.getObjectById(id);
+		Mono<Category> response = webClient.get().uri("/{id}", id).retrieve().bodyToMono(Category.class);
+		return response.block();
 	}
 
 	public Category getCategoryByName(String name) {
-		return helper.getObjectByName(name);
+		Mono<Category> response = webClient.get().uri("/{name}", name).retrieve().bodyToMono(Category.class);
+		return response.block();
+		// return helper.getObjectByName(name);
 	}
 
 	public void addCategory(String name) {
-		Category cat = new Category(name);
-		helper.saveObject(cat);
-
+		Mono<ResponseEntity<Category>> newCategory = webClient.post().contentType(MediaType.TEXT_PLAIN)
+				.body(BodyInserters.fromValue(name)).retrieve().toEntity(Category.class);
+		
+		newCategory.block();
 	}
 
 	public void delCategory(Category cat) {
-	
-// 		Products are also deleted because of relation in Category.java 
-		helper.deleteById(cat.getId());
+
+		delCategoryById(cat.getId());
+
 	}
 
 	public void delCategoryById(int id) {
-		
-		helper.deleteById(id);
+		Mono<Void> response = webClient.delete().uri("/{id}", id).retrieve().bodyToMono(Void.class);
+		response.block();
 	}
 }
