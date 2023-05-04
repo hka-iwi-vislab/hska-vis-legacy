@@ -45,10 +45,12 @@ public class ProductManagerImpl implements ProductManager {
 
 		Mono<List<Product>> products = productsWebClient.get()
 			.uri(uriBuilder -> uriBuilder
+				.path("/search")
 				.queryParam("minPrice", searchMinPrice)
 				.queryParam("maxPrice", searchMaxPrice)
 				.queryParam("details", searchDescription)
 				.build())
+			.accept(MediaType.APPLICATION_JSON)
 			.retrieve()
 			.bodyToMono(new ParameterizedTypeReference<List<Product>>() {
 			});

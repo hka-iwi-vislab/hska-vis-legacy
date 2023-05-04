@@ -1,14 +1,5 @@
 package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
-import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
-import hska.iwi.eShopMaster.model.database.dataAccessObjects.CategoryDAO;
-import hska.iwi.eShopMaster.model.database.dataobjects.Category;
-import reactor.core.publisher.Mono;
-
-import java.io.Console;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
@@ -21,9 +12,12 @@ import org.springframework.core.ParameterizedTypeReference;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
+import hska.iwi.eShopMaster.model.database.dataobjects.Category;
+import reactor.core.publisher.Mono;
 
 public class CategoryManagerImpl implements CategoryManager {
 
@@ -55,7 +49,6 @@ public class CategoryManagerImpl implements CategoryManager {
 	public Category getCategoryByName(String name) {
 		Mono<Category> response = webClient.get().uri("/{name}", name).retrieve().bodyToMono(Category.class);
 		return response.block();
-		// return helper.getObjectByName(name);
 	}
 
 	public void addCategory(String name) {
@@ -66,9 +59,7 @@ public class CategoryManagerImpl implements CategoryManager {
 	}
 
 	public void delCategory(Category cat) {
-
 		delCategoryById(cat.getId());
-
 	}
 
 	public void delCategoryById(int id) {

@@ -111,7 +111,7 @@ public class ProductController {
     @GetMapping("/search")
     public ResponseEntity<List<Product>> searchProducts(
             @RequestParam(value = "minPrice", required = false, defaultValue = "0") Double minPrice,
-            @RequestParam(value = "maxPrice", required = false, defaultValue = "Double.MAX_VALUE") Double maxPrice,
+            @RequestParam(value = "maxPrice", required = false, defaultValue = "" + Double.MAX_VALUE) Double maxPrice,
             @RequestParam(value = "details", required = false, defaultValue = "") String details) {
 
         List<Product> products = productRepository.findByPriceBetweenAndDetailsContainingIgnoreCase(minPrice, maxPrice, details);
