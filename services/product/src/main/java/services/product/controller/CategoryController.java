@@ -41,6 +41,24 @@ public class CategoryController {
         return categoryRepositroy.findAll();
     }
 
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Category> getSingleCategoryById(@PathVariable Long id){
+        Optional<Category> category = categoryRepositroy.findById(id);
+        if(category.isPresent()){
+            return ResponseEntity.ok().body(category.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping(path = "/{name}")
+    public ResponseEntity<Category> getSingleCategoryById(@PathVariable String name){
+        Optional<Category> category = categoryRepositroy.findByName(name);
+        if(category.isPresent()){
+            return ResponseEntity.ok().body(category.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @PostMapping(consumes = "text/plain")
     public ResponseEntity<Category> handlePostRequest(@RequestBody String name) {
 
