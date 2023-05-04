@@ -10,7 +10,7 @@ services:
     depends_on:
       - web-shop-db-image
     networks:
-      - local_dev_net
+      - backend
 
   product_service:
     container_name: product_service_container
@@ -22,11 +22,11 @@ services:
     depends_on:
       - product_db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://product_db:5432/postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://product_db:5432/products
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
     networks:
-      - local_dev_net
+      - backend
 
   user_service:
     container_name: user_service_container
@@ -38,11 +38,14 @@ services:
     depends_on:
       - user_db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://user_db:5433/postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://user_db:5432/users
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
     networks:
-      - local_dev_net
+      - backend
+    deploy:
+      restart_policy:
+        condition: on-failure
 
   product_db:
     container_name: product_db_postgres
@@ -51,11 +54,11 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=products
     ports:
       - "5432:5432"
     networks:
-      - local_dev_net
+      - backend
     volumes:
       - product-db-data:/var/lib/postgresql/data
 
@@ -66,13 +69,14 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=users
     ports:
       - "5433:5432"
     networks:
-      - local_dev_net
+      - backend
     volumes:
       - user-db-data:/var/lib/postgresql/data
+
 
   web-shop-db-image:
     image: mavogel/hska-vis-web-shop-db-image
@@ -86,13 +90,13 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - local_dev_net
+      - backend
 
 
 networks:
-  local_dev_net:
+  backend:
     driver: bridge
-
+    
 volumes:
   legacy-db-data:
   user-db-data:

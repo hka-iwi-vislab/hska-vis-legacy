@@ -72,7 +72,7 @@ public class UserController {
 
                 Role role = roleOptional.get();
                 User createdUser = new User(registerRequest.getUsername(),
-                        registerRequest.getFirstname(), registerRequest.getLastname(),
+                        registerRequest.getFirstName(), registerRequest.getLastName(),
                         registerRequest.getPassword(), role);
 
                 User savedUser = userRepository.save(createdUser);
