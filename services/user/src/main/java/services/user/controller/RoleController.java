@@ -31,10 +31,10 @@ public class RoleController {
     }
 
     @PostMapping(path = "")
-    public ResponseEntity createProduct(@RequestBody Role role) {
+    public ResponseEntity<Role> createProduct(@RequestBody Role role) {
 
         if (roleRepository.existsByLevel(role.getLevel()) || roleRepository.existsByType(role.getType())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("A role with the same level and/or type already exists.");
+            return new ResponseEntity<Role>(HttpStatus.CONFLICT);
         } else {
             Role savedRole = roleRepository.save(role);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -44,18 +44,14 @@ public class RoleController {
         }
     }
 
-    @GetMapping(value="/{id}")
-    public ResponseEntity getRoleById(@PathVariable Long id) {
-        if (id != null) {
-            Optional<Role> role = roleRepository.findById(id);
+    @GetMapping(value="/{:level}")
+    public ResponseEntity<Role> getRoleByLevel(@PathVariable int level) {
+        Optional<Role> role = roleRepository.findByLevel(level);
 
-            if (role.isPresent()) {
-                return ResponseEntity.ok().body(role.get());
-            } else {
-                return ResponseEntity.badRequest().body("The specified role does not exist.");
-            }
+        if (role.isPresent()) {
+            return ResponseEntity.ok().body(role.get());
         } else {
-            return ResponseEntity.badRequest().body("id was null.");
+            return new ResponseEntity<Role>(HttpStatus.NOT_FOUND);
         }
     }
 }

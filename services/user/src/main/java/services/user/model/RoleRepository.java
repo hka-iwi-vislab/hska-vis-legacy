@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public interface RoleRepository extends JpaRepository<Role, Long> { 
     Optional<Role> findById(Long primaryId);
+    Optional<Role> findByLevel(int level);
+    Optional<Role> findByType(String type);
 
     boolean existsById(Long id);
     boolean existsByLevel(int level);
     boolean existsByType(String type);
 
-    List<Role> findByLevel(int level);
-    List<Role> findByType(String type);
 }
