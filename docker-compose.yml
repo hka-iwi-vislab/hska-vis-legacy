@@ -38,7 +38,7 @@ services:
         aliases:
           - categories-service
 
-  customer:
+  products:
     container_name: products
     build:
       context: products/products
