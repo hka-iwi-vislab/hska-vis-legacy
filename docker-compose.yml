@@ -19,7 +19,7 @@ services:
       MYSQL_USER: webshopuser
       MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
     ports:
-      - "3406:3406"
+      - "3306:3306"
     networks:
         local_dev_net:
             aliases:
