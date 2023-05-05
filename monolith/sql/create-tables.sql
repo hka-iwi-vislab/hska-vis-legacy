@@ -43,3 +43,8 @@ CREATE TABLE category (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
+# create root user and grant rights
+GRANT ALL PRIVILEGES ON *.* TO 'webshopuser';
+FLUSH PRIVILEGES ;
+
+
