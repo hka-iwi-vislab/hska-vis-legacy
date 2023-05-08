@@ -2,7 +2,7 @@ version: '3.2'
 services:
   legacywebshop:
     build:
-      context: ..
+      context: /monolith
       dockerfile: docker/Dockerfile
     ports:
       - "8888:8080"
@@ -13,13 +13,12 @@ services:
 
   web-shop-db-image:
     build:
-      context: ..
+      context: /monolith
       dockerfile: docker/DockerfileMySQL
     volumes:
       - "./.data/db:/var/lib/mysql"
     environment:
       MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
-      MYSQL_DATABASE: webshop
       MYSQL_USER: webshopuser
       MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
     ports:
@@ -28,6 +27,31 @@ services:
         local_dev_net:
             aliases:
                 - web-shop-db-image
+  categories:
+    container_name: categories
+    build:
+      context: categories/categories
+      dockerfile: Dockerfile
+    image: vsys:categories
+    ports:
+      - "8082:8082"
+    networks:
+      local_dev_net:
+        aliases:
+          - categories-service
+
+  products:
+    container_name: products
+    build:
+      context: products/products
+      dockerfile: Dockerfile
+    image: vsys:products
+    ports:
+      - "8081:8081"
+    networks:
+      local_dev_net:
+        aliases:
+          - products-service
 
 networks:
   local_dev_net:
