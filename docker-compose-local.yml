@@ -16,6 +16,7 @@ services:
       context: /monolith
       dockerfile: docker/DockerfileMySQL
     volumes:
+      - "./.data/db:/var/lib/mysql"
       - ./monolith/sql:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: c8de110f37300a53a971749
@@ -31,9 +32,8 @@ services:
   categories:
     container_name: categories
     build:
-      context: categories/categories
+      context: categories
       dockerfile: Dockerfile
-    image: vsys:categories
     ports:
       - "8082:8082"
     networks:
@@ -44,9 +44,8 @@ services:
   products:
     container_name: products
     build:
-      context: products/products
+      context: products
       dockerfile: Dockerfile
-    image: vsys:products
     ports:
       - "8081:8081"
     networks:

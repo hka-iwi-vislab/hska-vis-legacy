@@ -1,11 +1,5 @@
-package hska.iwi.eShopMaster.model.database;
+package com.categories.database;
 
-import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.List;
-
-//import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
@@ -14,8 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import hska.iwi.eShopMaster.model.database.dataAccessObjects.IGenericDAO;
-import hska.iwi.eShopMaster.model.sessionFactory.util.HibernateUtil;
+import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.List;
 
 
 public  class GenericHibernateDAO<E, PK extends Serializable> implements IGenericDAO<E, PK> {
