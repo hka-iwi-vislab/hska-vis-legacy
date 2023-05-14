@@ -4,27 +4,16 @@ import hska.iwi.eShopMaster.model.businessLogic.manager.UserManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;
 import hska.iwi.eShopMaster.model.database.dataobjects.User;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
-import java.util.Scanner;
 
+import java.util.Map;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
 public class LoginAction extends ActionSupport {
 
-	Logger logger = LogManager.getLogger(LoginAction.class);
-
-	//Logger logger = LoggerFactory.getLogger(LoginAction.class);
-
-	//static Logger log = Logger.getLogger(Example.class.getName());
 
 	/**
      *
@@ -40,24 +29,6 @@ public class LoginAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 
-		// Create a neat value object to hold the URL
-
-		URL url = new URL("http://products-service:8081/products");
-
-		// Open a connection(?) on the URL(??) and cast the response(???)
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-		// This line makes the request
-		InputStream responseStream = connection.getInputStream();
-		Scanner s = new Scanner(responseStream).useDelimiter("\\A");
-		String apod = s.hasNext() ? s.next() : "";
-
-
-		System.out.println("Fetched from products: " + apod);
-
-		logger.error("Help, funktioniert das hier?");
-
-		System.out.println("Help, funktioniert das hier?");
 
 		// Return string:
 		String result = "input";

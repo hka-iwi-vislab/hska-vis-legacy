@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductsController {
 
-    @GetMapping("/products")
+    @GetMapping("/product")
     public String categories(){
         return "I am the awesome products microservice :=)";
     }

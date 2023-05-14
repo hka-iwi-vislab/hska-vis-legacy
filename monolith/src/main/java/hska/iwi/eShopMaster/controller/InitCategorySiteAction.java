@@ -1,7 +1,5 @@
 package hska.iwi.eShopMaster.controller;
 
-import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
-import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 import hska.iwi.eShopMaster.model.database.dataobjects.User;
 
@@ -10,6 +8,7 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.rest.CategoryManagerWithRest;
 
 public class InitCategorySiteAction extends ActionSupport {
 
@@ -32,8 +31,11 @@ public class InitCategorySiteAction extends ActionSupport {
 		boolean isAdmin = true;
 		if(user != null && isAdmin) {
 
-			CategoryManager categoryManager = new CategoryManagerImpl();
-			this.setCategories(categoryManager.getCategories());
+			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
+			this.setCategories(categoryManagerWithRest.getCategories());
+
+			//CategoryManager categoryManager = new CategoryManagerImpl();
+			//this.setCategories(categoryManager.getCategories());
 			
 			if(pageToGoTo != null){
 				if(pageToGoTo.equals("c")){

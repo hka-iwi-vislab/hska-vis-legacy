@@ -11,48 +11,43 @@ import java.util.List;
 @RestController
 @RequestMapping("/category")
 public class CategoryManagerImpl implements CategoryManager{
-	private CategoryDAO helper;
+	private CategoryDAO categoryDAO;
 	
 	public CategoryManagerImpl() {
-		helper = new CategoryDAO();
+		categoryDAO = new CategoryDAO();
 	}
 
-	@GetMapping()
+	@GetMapping("")
 	public List<Category> getCategories() {
-		return helper.getObjectList();
+		return categoryDAO.getObjectList();
 	}
 
-	@GetMapping()
-	public Category getCategory(@RequestParam("categoryId") int categoryId) {
-		return helper.getObjectById(categoryId);
+	@GetMapping("/id/{categoryID}")
+	public Category getCategory(@PathVariable int categoryID) {
+		return categoryDAO.getObjectById(categoryID);
 	}
 
 
-	@GetMapping
-	public Category getCategoryByName(@RequestParam("categoryName") String categoryName) {
-		return helper.getObjectByName(categoryName);
+	@GetMapping("/name/{categoryName}")
+	public Category getCategoryByName(@PathVariable String categoryName) {
+		return categoryDAO.getObjectByName(categoryName);
 	}
 
-	@PostMapping()
+	@PostMapping("")
 	public void addCategory(@RequestBody String name) {
 		Category cat = new Category(name);
-		helper.saveObject(cat);
+		categoryDAO.saveObject(cat);
 	}
 
-	@DeleteMapping
+	@DeleteMapping("")
 	public void delCategory(@RequestBody Category cat) {
 		//https://stackoverflow.com/questions/299628/is-an-entity-body-allowed-for-an-http-delete-request
-
-
-
-// 		Products are also deleted because of relation in Category.java 
-		helper.deleteById(cat.getId());
+		categoryDAO.deleteById(cat.getId());
 	}
 
 
 	@DeleteMapping("/{categoryID}")
 	public void delCategoryById(@PathVariable int categoryID) {
-		
-		helper.deleteById(categoryID);
+		categoryDAO.deleteById(categoryID);
 	}
 }
