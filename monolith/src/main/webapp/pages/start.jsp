@@ -83,13 +83,19 @@
 					<td><s:text name="product.category" /></td>
 					<td></td>
 				</tr>
-				<s:iterator value="products" status="rowstatus">
+				<s:iterator value="products" status="rowstatus" var="product">
 					<tr>			
 					<s:if test="#rowstatus.odd == true">
 						<td class="odd"><s:property value="#rowstatus.index+1" />
 						<td class="odd"><s:property value="name" /></td>
 						<td class="odd"><s:property value="price" /></td>
-						<td class="odd"><s:property value="category.name" /></td>
+						<td class="odd">
+							<s:iterator value="categories" var="category">
+								<s:if test="#product.categoryId==#category.id">
+									<s:property value="#category.name" />
+								</s:if>
+							</s:iterator>
+						</td>
 										<td class="odd"><a href="./ProductDetailsAction.action?id=<s:property value='id'/>&searchValue=<s:property value='searchValue'/>&searchMinPrice=<s:property value='searchMinPrice'/>&searchMaxPrice=<s:property value='searchMaxPrice'/>"><img src="img/detBtn.png" alt="<s:text name="product.details" />"/></a></td>
 						<s:if test="#session.webshop_user.role.level==0">
 							<td class="odd"><a href="./DeleteProductAction.action?id=<s:property value='id'/>"><img src="img/delBtn.png" alt="<s:text name="product.delete" />"/></a></td>
@@ -97,13 +103,19 @@
 					</s:if>
 					<s:else>
 						<td><s:property value="#rowstatus.index+1" />
-						<td><s:property value="name" /></td>
-						<td><s:property value="price" /></td>
-						<td><s:property value="category.name" /></td>
-										<td><a href="./ProductDetailsAction.action?id=<s:property value='id'/>&searchValue=<s:property value='searchValue'/>&searchMinPrice=<s:property value='searchMinPrice'/>&searchMaxPrice=<s:property value='searchMaxPrice'/>"><img src="img/detBtn.png" alt="<s:text name="product.details" />"/></a></td>
-						<s:if test="#session.webshop_user.role.level==0">
-							<td><a href="./DeleteProductAction.action?id=<s:property value='id'/>"><img src="img/delBtn.png" alt="<s:text name="product.delete" />"/></a></td>
-						</s:if>			
+						<td><s:property value="#product.name" /></td>
+						<td><s:property value="#product.price" /></td>
+						<td>
+							<s:iterator value="categories" var="category">
+								<s:if test="#product.categoryId==#category.id">
+									<s:property value="#category.name" />
+								</s:if>
+							</s:iterator>
+						</td>
+						<td><a href="./ProductDetailsAction.action?id=<s:property value='id'/>&searchValue=<s:property value='searchValue'/>&searchMinPrice=<s:property value='searchMinPrice'/>&searchMaxPrice=<s:property value='searchMaxPrice'/>"><img src="img/detBtn.png" alt="<s:text name="product.details" />"/></a></td>
+							<s:if test="#session.webshop_user.role.level==0">
+								<td><a href="./DeleteProductAction.action?id=<s:property value='id'/>"><img src="img/delBtn.png" alt="<s:text name="product.delete" />"/></a></td>
+							</s:if>
 					</s:else>
 					</tr>
 				</s:iterator>

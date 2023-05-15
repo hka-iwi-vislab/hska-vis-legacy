@@ -61,7 +61,6 @@ public class SearchAction extends ActionSupport{
 			/*
 			// Search products and show results:
 			ProductManager productManager = new ProductManagerImpl();
-//			this.products = productManager.getProductsForSearchValues(this.searchDescription, this.searchMinPrice, this.searchMaxPrice);
 			if (!searchMinPrice.isEmpty()){
 				sMinPrice =  Double.parseDouble(this.searchMinPrice);
 			}

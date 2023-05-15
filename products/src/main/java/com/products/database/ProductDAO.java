@@ -25,13 +25,13 @@ public class ProductDAO extends GenericHibernateDAO<Product, Integer> {
 				crit.add(Restrictions.ilike("details", searchDescription ));
 			}
 
-			if (( searchMinPrice != null) && ( searchMaxPrice != null)) {		
+			if (( searchMinPrice != -1) && ( searchMaxPrice != -1)) {
 					crit.add(Restrictions.between("price", searchMinPrice, searchMaxPrice));			
 				}
-			else 	if( searchMinPrice != null) {
+			else 	if( searchMinPrice != -1) {
 					crit.add(Restrictions.ge("price", searchMinPrice));			
 					}
-			else if ( searchMaxPrice != null) {		
+			else if ( searchMaxPrice != -1) {
 					crit.add(Restrictions.le("price", searchMaxPrice));			
 			}
 

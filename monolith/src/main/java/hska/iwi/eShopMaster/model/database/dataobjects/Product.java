@@ -59,11 +59,11 @@ public class Product {
 		this.price = price;
 	}
 
-	public int getCategory() {
+	public int getCategoryId() {
 		return this.categoryId;
 	}
 
-	public void setCategory(int categoryId) {
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
 

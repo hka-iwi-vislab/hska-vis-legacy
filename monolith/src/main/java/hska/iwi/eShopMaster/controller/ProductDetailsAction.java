@@ -1,5 +1,6 @@
 package hska.iwi.eShopMaster.controller;
 
+import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 import hska.iwi.eShopMaster.model.database.dataobjects.Product;
 import hska.iwi.eShopMaster.model.database.dataobjects.User;
 
@@ -7,6 +8,7 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.rest.CategoryManagerWithRest;
 import hska.iwi.eShopMaster.model.rest.ProductManagerWithRest;
 
 public class ProductDetailsAction extends ActionSupport {
@@ -17,6 +19,8 @@ public class ProductDetailsAction extends ActionSupport {
 	private Integer searchMinPrice;
 	private Integer searchMaxPrice;
 	private Product product;
+
+	private Category category;
 
 	/**
 	 * 
@@ -33,6 +37,9 @@ public class ProductDetailsAction extends ActionSupport {
 		if(user != null) {
 			ProductManagerWithRest productManagerWithRest = new ProductManagerWithRest();
 			product = productManagerWithRest.getProductById(id);
+
+			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
+			category = categoryManagerWithRest.getCategory(product.getCategoryId());
 
 			/*
 			ProductManager productManager = new ProductManagerImpl();
@@ -90,5 +97,13 @@ public class ProductDetailsAction extends ActionSupport {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }

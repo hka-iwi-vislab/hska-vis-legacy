@@ -24,6 +24,7 @@ public class ProductManagerImpl implements ProductManager {
     @GetMapping("/search")
     public List<Product> getProductsForSearchValues(@RequestParam String searchValue,
                                                     @RequestParam Double searchMinPrice, @RequestParam Double searchMaxPrice) {
+        System.out.println(searchValue);
         return productDAO.getProductListByCriteria(searchValue, searchMinPrice, searchMaxPrice);
     }
 

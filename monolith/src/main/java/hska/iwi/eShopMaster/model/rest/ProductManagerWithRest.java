@@ -89,13 +89,14 @@ public class ProductManagerWithRest implements ProductManager {
 
     public List<Product> getProductsForSearchValues(String searchValue, Double searchMinPrice, Double searchMaxPrice) {
 
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(RestHelper.productServiceUrl).newBuilder();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(RestHelper.productServiceUrl + "/search").newBuilder();
         urlBuilder.addQueryParameter("searchValue", searchValue);
-        urlBuilder.addQueryParameter("searchMinPrice", searchMinPrice != null ? searchMinPrice.toString() : null);
-        urlBuilder.addQueryParameter("searchMaxPrice", searchMaxPrice != null ? searchMaxPrice.toString() : null);
+        urlBuilder.addQueryParameter("searchMinPrice", searchMinPrice != null ? searchMinPrice.toString() : "-1");
+        urlBuilder.addQueryParameter("searchMaxPrice", searchMaxPrice != null ? searchMaxPrice.toString() : "-1");
 
         try
         {
+            System.out.println(urlBuilder.build().toString());
             String productsString = restHelper.doGetRequest(urlBuilder.build().toString());
             Type productListType = new TypeToken<ArrayList<Product>>(){}.getType();
             return gson.fromJson(productsString, productListType);
