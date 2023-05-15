@@ -40,10 +40,6 @@ public class ListAllProductsAction extends ActionSupport {
 			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
 			this.setCategories(categoryManagerWithRest.getCategories());
 
-			/*
-			ProductManager productManager = new ProductManagerImpl();
-			this.products = productManager.getProducts();
-			 */
 			result = "success";
 		}
 		

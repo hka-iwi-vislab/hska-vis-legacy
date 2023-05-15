@@ -5,18 +5,11 @@ package hska.iwi.eShopMaster.model.database.dataobjects;
  */
 public class Product {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-
 	private String name;
-
 	private double price;
-
 	private int categoryId;
-
 	private String details;
 
 	public Product() {

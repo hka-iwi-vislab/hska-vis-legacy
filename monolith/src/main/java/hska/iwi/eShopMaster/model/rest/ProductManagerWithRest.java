@@ -21,7 +21,6 @@ public class ProductManagerWithRest implements ProductManager {
         gson = new Gson();
     }
 
-    //TODO Works
     public List<Product> getProducts() {
         String url = RestHelper.productServiceUrl;
 
@@ -41,7 +40,6 @@ public class ProductManagerWithRest implements ProductManager {
         throw new RuntimeException();
     }
 
-    //TODO Works
     public Product getProductById(int id) {
         String url = RestHelper.productServiceUrl + "/id/" + id;
 
@@ -58,7 +56,6 @@ public class ProductManagerWithRest implements ProductManager {
         throw new RuntimeException();
     }
 
-    //TODO Never used
     public Product getProductByName(String name) {
         String url = RestHelper.productServiceUrl + "/name/" + name;
 
@@ -75,7 +72,6 @@ public class ProductManagerWithRest implements ProductManager {
         throw new RuntimeException();
     }
 
-    //TODO Works
     public int addProduct(String name, double price, int categoryId, String details) {
         String jsonProduct = gson.toJson(new Product(name, price, categoryId, details));
 
@@ -91,7 +87,6 @@ public class ProductManagerWithRest implements ProductManager {
         return -1;
     }
 
-    //TODO Works
     public List<Product> getProductsForSearchValues(String searchValue, Double searchMinPrice, Double searchMaxPrice) {
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(RestHelper.productServiceUrl + "/search").newBuilder();
@@ -114,7 +109,6 @@ public class ProductManagerWithRest implements ProductManager {
         throw new RuntimeException();
     }
 
-    //TODO Works
     public boolean deleteProductsByCategoryId(int categoryId) {
         String url = RestHelper.productServiceUrl + "/by-category/" + categoryId;
         try
@@ -130,7 +124,6 @@ public class ProductManagerWithRest implements ProductManager {
         return false;
     }
 
-    //TODO Works
     public void deleteProductById(int id) {
         String url = RestHelper.productServiceUrl + "/" + id;
         try

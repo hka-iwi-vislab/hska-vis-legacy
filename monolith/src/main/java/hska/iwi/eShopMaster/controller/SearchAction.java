@@ -58,21 +58,6 @@ public class SearchAction extends ActionSupport{
 			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
 			this.categories =  categoryManagerWithRest.getCategories();
 
-			/*
-			// Search products and show results:
-			ProductManager productManager = new ProductManagerImpl();
-			if (!searchMinPrice.isEmpty()){
-				sMinPrice =  Double.parseDouble(this.searchMinPrice);
-			}
-			if (!searchMaxPrice.isEmpty()){
-				sMaxPrice =  Double.parseDouble(this.searchMaxPrice);
-			}
-			this.products = productManager.getProductsForSearchValues(this.searchDescription, sMinPrice, sMaxPrice);
-
-			// Show all categories:
-			CategoryManager categoryManager = new CategoryManagerImpl();
-			this.categories = categoryManager.getCategories();
-			*/
 			result = "success";
 		}
 		
