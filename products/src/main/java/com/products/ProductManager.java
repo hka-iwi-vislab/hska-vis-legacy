@@ -13,7 +13,7 @@ public interface ProductManager {
 
 	public Product getProductByName(String name);
 
-	public int addProduct(String name, double price, int categoryId, String details);
+	public int addProduct(Product product);
 
 	public List<Product> getProductsForSearchValues(String searchValue, Double searchMinPrice, Double searchMaxPrice);
 	

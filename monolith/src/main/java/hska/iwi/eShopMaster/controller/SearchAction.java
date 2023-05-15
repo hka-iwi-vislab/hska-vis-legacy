@@ -1,9 +1,5 @@
 package hska.iwi.eShopMaster.controller;
 
-import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
-import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
-import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
-import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
 import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 import hska.iwi.eShopMaster.model.database.dataobjects.Product;
 import hska.iwi.eShopMaster.model.database.dataobjects.User;
@@ -14,6 +10,8 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.rest.CategoryManagerWithRest;
+import hska.iwi.eShopMaster.model.rest.ProductManagerWithRest;
 
 public class SearchAction extends ActionSupport{
 
@@ -45,6 +43,22 @@ public class SearchAction extends ActionSupport{
 		ActionContext.getContext().setLocale(Locale.US);  
 		
 		if(user != null){
+
+			ProductManagerWithRest productManagerWithRest = new ProductManagerWithRest();
+
+			if (!searchMinPrice.isEmpty()){
+				sMinPrice =  Double.parseDouble(this.searchMinPrice);
+			}
+			if (!searchMaxPrice.isEmpty()){
+				sMaxPrice =  Double.parseDouble(this.searchMaxPrice);
+			}
+
+			this.products = productManagerWithRest.getProductsForSearchValues(searchDescription, sMinPrice, sMaxPrice);
+
+			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
+			this.categories =  categoryManagerWithRest.getCategories();
+
+			/*
 			// Search products and show results:
 			ProductManager productManager = new ProductManagerImpl();
 //			this.products = productManager.getProductsForSearchValues(this.searchDescription, this.searchMinPrice, this.searchMaxPrice);
@@ -55,10 +69,11 @@ public class SearchAction extends ActionSupport{
 				sMaxPrice =  Double.parseDouble(this.searchMaxPrice);
 			}
 			this.products = productManager.getProductsForSearchValues(this.searchDescription, sMinPrice, sMaxPrice);
-			
+
 			// Show all categories:
 			CategoryManager categoryManager = new CategoryManagerImpl();
 			this.categories = categoryManager.getCategories();
+			*/
 			result = "success";
 		}
 		

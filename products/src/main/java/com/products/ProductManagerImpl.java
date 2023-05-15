@@ -22,9 +22,9 @@ public class ProductManagerImpl implements ProductManager {
 
 
     @GetMapping("/search")
-    public List<Product> getProductsForSearchValues(@RequestParam String searchDescription,
+    public List<Product> getProductsForSearchValues(@RequestParam String searchValue,
                                                     @RequestParam Double searchMinPrice, @RequestParam Double searchMaxPrice) {
-        return new ProductDAO().getProductListByCriteria(searchDescription, searchMinPrice, searchMaxPrice);
+        return new ProductDAO().getProductListByCriteria(searchValue, searchMinPrice, searchMaxPrice);
     }
 
     @GetMapping("/id/{productId}")
@@ -39,35 +39,28 @@ public class ProductManagerImpl implements ProductManager {
 
     @PostMapping("")
     public int addProduct(@RequestBody Product product) {
-
-    //public int addProduct(String name, double price, int categoryId, String details) {
         int productId = -1;
 
-        CategoryManager categoryManager = new CategoryManagerImpl();
-        Category category = categoryManager.getCategory(categoryId);
-
-        if (category != null) {
-            Product product;
-            if (details == null) {
-                product = new Product(name, price, category);
-            } else {
-                product = new Product(name, price, category, details);
-            }
-
-            productDAO.saveObject(product);
-            productId = product.getId();
+        if (product.getDetails() == null) {
+            product = new Product(product.getName(), product.getPrice(), product.getCategoryId());
+        } else {
+            product = new Product(product.getName(), product.getPrice(), product.getCategoryId(), product.getDetails());
         }
+
+        productDAO.saveObject(product);
+        productId = product.getId();
 
         return productId;
     }
 
-
-    public void deleteProductById(int id) {
-        productDAO.deleteById(id);
+    @DeleteMapping("/{productId}")
+    public void deleteProductById(@PathVariable int productId) {
+        productDAO.deleteById(productId);
     }
 
-    public boolean deleteProductsByCategoryId(int categoryId) {
-        // TODO Auto-generated method stub
+    @DeleteMapping("/by-category/{categoryId}")
+    public boolean deleteProductsByCategoryId(@PathVariable int categoryId) {
+        // TODO Delete all Products with CategoryId
         return false;
     }
 

@@ -1,52 +1,37 @@
 package hska.iwi.eShopMaster.model.database.dataobjects;
 
-
-import javax.persistence.*;
-
 /**
  * This class contains details about products.
  */
-@Entity
-@Table(name = "product")
-public class Product implements java.io.Serializable {
+public class Product {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
 	private int id;
 
-	@Column(name = "name")
 	private String name;
 
-	@Column(name = "price")
 	private double price;
 
-	
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	private Category category;
+	private int categoryId;
 
-	@Column(name = "details")
 	private String details;
 
 	public Product() {
 	}
 
-	public Product(String name, double price, Category category) {
+	public Product(String name, double price, int categoryId) {
 		this.name = name;
 		this.price = price;
-		this.category = category;
+		this.categoryId = categoryId;
 	}
 
-	public Product(String name, double price, Category category, String details) {
+	public Product(String name, double price, int categoryId, String details) {
 		this.name = name;
 		this.price = price;
-		this.category = category;
+		this.categoryId = categoryId;
 		this.details = details;
 	}
 
@@ -74,12 +59,12 @@ public class Product implements java.io.Serializable {
 		this.price = price;
 	}
 
-	public Category getCategory() {
-		return this.category;
+	public int getCategory() {
+		return this.categoryId;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategory(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getDetails() {

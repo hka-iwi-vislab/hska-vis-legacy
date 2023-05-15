@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.rest.ProductManagerWithRest;
 
 public class DeleteProductAction extends ActionSupport {
 
@@ -26,10 +27,11 @@ public class DeleteProductAction extends ActionSupport {
 		
 		if(user != null && (user.getRole().getTyp().equals("admin"))) {
 
-			new ProductDAO().deleteById(id);
-			{
-				res = "success";
-			}
+			ProductManagerWithRest productManagerWithRest = new ProductManagerWithRest();
+			productManagerWithRest.deleteProductById(id);
+
+			//new ProductDAO().deleteById(id);
+			res = "success";
 		}
 		
 		return res;

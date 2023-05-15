@@ -2,7 +2,6 @@ package com.categories;
 
 import com.categories.database.Category;
 import com.categories.database.CategoryDAO;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

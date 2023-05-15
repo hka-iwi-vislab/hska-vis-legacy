@@ -1,9 +1,5 @@
 package hska.iwi.eShopMaster.controller;
 
-import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
-import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
-import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
-import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
 import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 import hska.iwi.eShopMaster.model.database.dataobjects.User;
 
@@ -32,8 +28,6 @@ public class AddProductAction extends ActionSupport {
 
 		if(user != null && (user.getRole().getTyp().equals("admin"))) {
 
-
-
 			//Schritt 1: CategoryManage gucken ob diese category existiert
 			//Schritt 2: Product mit dieser CateoryID anlegen
 
@@ -46,9 +40,6 @@ public class AddProductAction extends ActionSupport {
 				int productId = productManagerWithRest.addProduct(name, Double.parseDouble(price), categoryId,
 						details);
 
-
-
-
 				//ProductManager productManager = new ProductManagerImpl();
 				//int productId = productManager.addProduct(name, Double.parseDouble(price), categoryId,
 				//		details);
@@ -57,10 +48,6 @@ public class AddProductAction extends ActionSupport {
 					result = "success";
 				}
 			}
-
-
-
-
 		}
 
 		return result;
@@ -68,9 +55,14 @@ public class AddProductAction extends ActionSupport {
 
 	@Override
 	public void validate() {
+		CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
+		this.setCategories(categoryManagerWithRest.getCategories());
+
+		/*
 		CategoryManager categoryManager = new CategoryManagerImpl();
 		this.setCategories(categoryManager.getCategories());
 
+		*/
 		//TODO hier muss ein REST call an den Categories microservice rein!
 
 		// Validate name:
