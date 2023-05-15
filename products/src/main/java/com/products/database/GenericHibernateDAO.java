@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -145,7 +146,6 @@ public  class GenericHibernateDAO<E, PK extends Serializable> implements IGeneri
 		 
 			
 		}
-
 
 		@SuppressWarnings("unchecked")
 		public List<E> get(E entity) {

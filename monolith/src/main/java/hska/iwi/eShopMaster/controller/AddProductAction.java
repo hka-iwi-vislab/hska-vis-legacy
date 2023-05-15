@@ -63,7 +63,6 @@ public class AddProductAction extends ActionSupport {
 		this.setCategories(categoryManager.getCategories());
 
 		*/
-		//TODO hier muss ein REST call an den Categories microservice rein!
 
 		// Validate name:
 

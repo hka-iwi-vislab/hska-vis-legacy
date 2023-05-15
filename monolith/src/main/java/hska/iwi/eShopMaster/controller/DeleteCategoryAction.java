@@ -9,6 +9,7 @@ import java.util.Map;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import hska.iwi.eShopMaster.model.rest.CategoryManagerWithRest;
+import hska.iwi.eShopMaster.model.rest.ProductManagerWithRest;
 
 public class DeleteCategoryAction extends ActionSupport {
 
@@ -31,6 +32,11 @@ public class DeleteCategoryAction extends ActionSupport {
 
 			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
 			categoryManagerWithRest.delCategoryById(catId);
+
+			//Delete all Products that belong to this category
+			ProductManagerWithRest productManagerWithRest = new ProductManagerWithRest();
+			productManagerWithRest.deleteProductsByCategoryId(catId);
+
 			categories = categoryManagerWithRest.getCategories();
 				
 			res = "success";

@@ -24,7 +24,7 @@ public class ProductManagerImpl implements ProductManager {
     @GetMapping("/search")
     public List<Product> getProductsForSearchValues(@RequestParam String searchValue,
                                                     @RequestParam Double searchMinPrice, @RequestParam Double searchMaxPrice) {
-        return new ProductDAO().getProductListByCriteria(searchValue, searchMinPrice, searchMaxPrice);
+        return productDAO.getProductListByCriteria(searchValue, searchMinPrice, searchMaxPrice);
     }
 
     @GetMapping("/id/{productId}")
@@ -60,8 +60,8 @@ public class ProductManagerImpl implements ProductManager {
 
     @DeleteMapping("/by-category/{categoryId}")
     public boolean deleteProductsByCategoryId(@PathVariable int categoryId) {
-        // TODO Delete all Products with CategoryId
-        return false;
+        productDAO.deleteByCategoryId(categoryId);
+        return true;
     }
 
 }

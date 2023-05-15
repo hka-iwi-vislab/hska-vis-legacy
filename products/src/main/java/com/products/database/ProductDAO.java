@@ -1,8 +1,6 @@
 package com.products.database;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -48,5 +46,22 @@ public class ProductDAO extends GenericHibernateDAO<Product, Integer> {
 	    return productList;
 	}
 
-	
+	public void deleteByCategoryId(int categoryId) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		try
+		{
+			session.beginTransaction();
+			Query query = session.createQuery("delete Product where categoryId = :categoryId");
+			query.setParameter("categoryId", categoryId);
+			query.executeUpdate();
+			session.getTransaction().commit();
+		}
+		catch (HibernateException e)
+		{
+			//log.error("Hibernate Exception" + e.getMessage());
+			session.getTransaction().rollback();
+			throw new RuntimeException(e);
+		}
+	}
 }
