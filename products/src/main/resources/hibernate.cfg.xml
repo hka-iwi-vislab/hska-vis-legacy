@@ -6,7 +6,7 @@
 
         <!-- mysql Konfiguration -->
         <!--Note: 'web-shop-db-image' ist the url you give in the '../docker-compose.yml' as link alias -->
-        <property name="connection.url">jdbc:mysql://web-shop-db-image:3306/categories</property>
+        <property name="connection.url">jdbc:mysql://web-shop-db-image:3306/products</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">webshopuser</property>
         <property name="connection.password">240b2c6d58ff2ce2f508b49f</property>
@@ -19,7 +19,7 @@
 
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="com.categories.database.Category"/>
+        <mapping class="com.products.database.Product"/>
 
     </session-factory>
 </hibernate-configuration>

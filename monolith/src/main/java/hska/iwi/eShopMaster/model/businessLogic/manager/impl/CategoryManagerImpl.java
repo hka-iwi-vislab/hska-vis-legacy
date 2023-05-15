@@ -42,4 +42,8 @@ public class CategoryManagerImpl implements CategoryManager{
 		
 		helper.deleteById(id);
 	}
+
+	public boolean categoryExists(int categoryID) {
+		return helper.getObjectById(categoryID) != null;
+	}
 }

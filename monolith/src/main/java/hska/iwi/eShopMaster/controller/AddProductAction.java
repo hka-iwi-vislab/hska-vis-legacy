@@ -12,6 +12,8 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.rest.CategoryManagerWithRest;
+import hska.iwi.eShopMaster.model.rest.ProductManagerWithRest;
 
 public class AddProductAction extends ActionSupport {
 
@@ -30,13 +32,35 @@ public class AddProductAction extends ActionSupport {
 
 		if(user != null && (user.getRole().getTyp().equals("admin"))) {
 
-			ProductManager productManager = new ProductManagerImpl();
-			int productId = productManager.addProduct(name, Double.parseDouble(price), categoryId,
-					details);
 
-			if (productId > 0) {
-				result = "success";
+
+			//Schritt 1: CategoryManage gucken ob diese category existiert
+			//Schritt 2: Product mit dieser CateoryID anlegen
+
+
+			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
+
+			if(categoryManagerWithRest.categoryExists(categoryId))
+			{
+				ProductManagerWithRest productManagerWithRest = new ProductManagerWithRest();
+				int productId = productManagerWithRest.addProduct(name, Double.parseDouble(price), categoryId,
+						details);
+
+
+
+
+				//ProductManager productManager = new ProductManagerImpl();
+				//int productId = productManager.addProduct(name, Double.parseDouble(price), categoryId,
+				//		details);
+
+				if (productId > 0) {
+					result = "success";
+				}
 			}
+
+
+
+
 		}
 
 		return result;

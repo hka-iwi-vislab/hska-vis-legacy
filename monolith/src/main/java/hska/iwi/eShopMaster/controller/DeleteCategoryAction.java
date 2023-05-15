@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.rest.CategoryManagerWithRest;
 
 public class DeleteCategoryAction extends ActionSupport {
 
@@ -30,15 +31,11 @@ public class DeleteCategoryAction extends ActionSupport {
 		
 		if(user != null && (user.getRole().getTyp().equals("admin"))) {
 
-			// Helper inserts new Category in DB:
-			CategoryManager categoryManager = new CategoryManagerImpl();
-		
-			categoryManager.delCategoryById(catId);
-
-			categories = categoryManager.getCategories();
+			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
+			categoryManagerWithRest.delCategoryById(catId);
+			categories = categoryManagerWithRest.getCategories();
 				
 			res = "success";
-
 		}
 		
 		return res;

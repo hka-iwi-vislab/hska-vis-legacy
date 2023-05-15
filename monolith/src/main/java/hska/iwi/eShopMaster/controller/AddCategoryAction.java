@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.rest.CategoryManagerWithRest;
 
 public class AddCategoryAction extends ActionSupport {
 
@@ -31,12 +32,10 @@ public class AddCategoryAction extends ActionSupport {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		user = (User) session.get("webshop_user");
 		if(user != null && (user.getRole().getTyp().equals("admin"))) {
-			CategoryManager categoryManager = new CategoryManagerImpl();
-			// Add category
-			categoryManager.addCategory(newCatName);
-			
-			// Go and get new Category list
-			this.setCategories(categoryManager.getCategories());
+
+			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
+			categoryManagerWithRest.addCategory(newCatName);
+			this.setCategories(categoryManagerWithRest.getCategories());
 			
 			res = "success";
 		}

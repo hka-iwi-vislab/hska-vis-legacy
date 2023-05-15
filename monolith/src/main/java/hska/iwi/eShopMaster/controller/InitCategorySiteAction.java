@@ -33,9 +33,6 @@ public class InitCategorySiteAction extends ActionSupport {
 
 			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
 			this.setCategories(categoryManagerWithRest.getCategories());
-
-			//CategoryManager categoryManager = new CategoryManagerImpl();
-			//this.setCategories(categoryManager.getCategories());
 			
 			if(pageToGoTo != null){
 				if(pageToGoTo.equals("c")){
@@ -43,7 +40,7 @@ public class InitCategorySiteAction extends ActionSupport {
 				}
 				else if(pageToGoTo.equals("p")){
 					res = "successP";
-				}				
+				}
 			}
 		}
 		

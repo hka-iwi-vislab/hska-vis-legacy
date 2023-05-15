@@ -1,9 +1,8 @@
 package com.categories;
 
-
-
 import com.categories.database.Category;
 import com.categories.database.CategoryDAO;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 @RequestMapping("/category")
 public class CategoryManagerImpl implements CategoryManager{
 	private CategoryDAO categoryDAO;
-	
+
 	public CategoryManagerImpl() {
 		categoryDAO = new CategoryDAO();
 	}
@@ -27,6 +26,16 @@ public class CategoryManagerImpl implements CategoryManager{
 		return categoryDAO.getObjectById(categoryID);
 	}
 
+	@GetMapping("/exists/{categoryID}")
+	public boolean categoryExists(@PathVariable int categoryID){
+		Category category = categoryDAO.getObjectById(categoryID);
+		if(category != null)
+		{
+			System.out.println(category.getId());
+		}
+
+		return category != null;
+	}
 
 	@GetMapping("/name/{categoryName}")
 	public Category getCategoryByName(@PathVariable String categoryName) {

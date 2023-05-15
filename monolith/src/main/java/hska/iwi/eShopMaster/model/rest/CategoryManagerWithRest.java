@@ -97,6 +97,8 @@ public class CategoryManagerWithRest implements CategoryManager {
         }
 
         //TODO Products are also deleted because of relation in Category.java
+        //Category kennt seine Produkte nicht -> Alle Referenzen auf Product aus dem CategoryDAO rausschmeißen
+        //Bei diesem delete hier einfach einen call an /products machen (Delete products for category?)
     }
 
     public void delCategoryById(int id) {
@@ -110,5 +112,22 @@ public class CategoryManagerWithRest implements CategoryManager {
         {
             e.printStackTrace();
         }
+
+        //TODO Products are also deleted because of relation in Category.java
+    }
+
+    public boolean categoryExists(int categoryID) {
+        String url = RestHelper.categoryServiceUrl + "/exists/" + categoryID;
+
+        try
+        {
+            String categoryExistString = restHelper.doGetRequest(url);
+            return gson.fromJson(categoryExistString, boolean.class);
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        throw new RuntimeException();
     }
 }
