@@ -19,6 +19,7 @@ public class CategoryManagerWithRest implements CategoryManager {
         gson = new Gson();
     }
 
+    //TODO Works!
     public List<Category> getCategories() {
         String url = RestHelper.categoryServiceUrl;
 
@@ -38,6 +39,7 @@ public class CategoryManagerWithRest implements CategoryManager {
         throw new RuntimeException();
     }
 
+    //TODO Works!
     public Category getCategory(int id) {
 
         String url = RestHelper.categoryServiceUrl + "/id/" + id ;
@@ -55,6 +57,7 @@ public class CategoryManagerWithRest implements CategoryManager {
         throw new RuntimeException();
     }
 
+    //TODO Never Used
     public Category getCategoryByName(String name) {
         String url = RestHelper.categoryServiceUrl + "/name/" + name;
         try
@@ -71,6 +74,7 @@ public class CategoryManagerWithRest implements CategoryManager {
         throw new RuntimeException();
     }
 
+    //TODO Works
     public void addCategory(String name) {
         String jsonName = gson.toJson(name);
 
@@ -84,6 +88,7 @@ public class CategoryManagerWithRest implements CategoryManager {
         }
     }
 
+    //TODO Never Used
     public void delCategory(Category cat) {
         String jsonCategory = gson.toJson(cat);
 
@@ -97,6 +102,7 @@ public class CategoryManagerWithRest implements CategoryManager {
         }
     }
 
+    //TODO Works
     public void delCategoryById(int id) {
         String url = RestHelper.categoryServiceUrl + "/" + id;
 
@@ -110,6 +116,7 @@ public class CategoryManagerWithRest implements CategoryManager {
         }
     }
 
+    //TODO Works
     public boolean categoryExists(int categoryID) {
         String url = RestHelper.categoryServiceUrl + "/exists/" + categoryID;
 
