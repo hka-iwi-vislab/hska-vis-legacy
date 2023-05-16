@@ -2,17 +2,21 @@ package com.products;
 
 import com.products.database.Product;
 import com.products.database.ProductDAO;
+import com.products.rest.RestHelper;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/product")
 public class ProductManagerImpl implements ProductManager {
     private ProductDAO productDAO;
+    private RestHelper restHelper;
 
     public ProductManagerImpl() {
         productDAO = new ProductDAO();
+        restHelper = new RestHelper();
     }
 
     @GetMapping("")
@@ -40,16 +44,31 @@ public class ProductManagerImpl implements ProductManager {
 
     @PostMapping("")
     public int addProduct(@RequestBody Product product) {
-        int productId = -1;
+        String url = RestHelper.categoryServiceUrl + "/exists/" + product.getCategoryId();
+        boolean exists = false;
 
-        if (product.getDetails() == null) {
-            product = new Product(product.getName(), product.getPrice(), product.getCategoryId());
-        } else {
-            product = new Product(product.getName(), product.getPrice(), product.getCategoryId(), product.getDetails());
+        try
+        {
+            String categoryExistString = restHelper.doGetRequest(url);
+            exists = categoryExistString.equals("true");
+        } catch (IOException e)
+        {
+            e.printStackTrace();
         }
 
-        productDAO.saveObject(product);
-        productId = product.getId();
+        int productId = -1;
+
+        if(exists)
+        {
+            if (product.getDetails() == null) {
+                product = new Product(product.getName(), product.getPrice(), product.getCategoryId());
+            } else {
+                product = new Product(product.getName(), product.getPrice(), product.getCategoryId(), product.getDetails());
+            }
+
+            productDAO.saveObject(product);
+            productId = product.getId();
+        }
 
         return productId;
     }

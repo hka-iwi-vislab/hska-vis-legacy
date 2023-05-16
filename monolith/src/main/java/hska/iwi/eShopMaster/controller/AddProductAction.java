@@ -27,26 +27,12 @@ public class AddProductAction extends ActionSupport {
 		User user = (User) session.get("webshop_user");
 
 		if(user != null && (user.getRole().getTyp().equals("admin"))) {
+			ProductManagerWithRest productManagerWithRest = new ProductManagerWithRest();
+			int productId = productManagerWithRest.addProduct(name, Double.parseDouble(price), categoryId,
+					details);
 
-			//Schritt 1: CategoryManage gucken ob diese category existiert
-			//Schritt 2: Product mit dieser CateoryID anlegen
-
-
-			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
-
-			if(categoryManagerWithRest.categoryExists(categoryId))
-			{
-				ProductManagerWithRest productManagerWithRest = new ProductManagerWithRest();
-				int productId = productManagerWithRest.addProduct(name, Double.parseDouble(price), categoryId,
-						details);
-
-				//ProductManager productManager = new ProductManagerImpl();
-				//int productId = productManager.addProduct(name, Double.parseDouble(price), categoryId,
-				//		details);
-
-				if (productId > 0) {
-					result = "success";
-				}
+			if (productId > 0) {
+				result = "success";
 			}
 		}
 
@@ -57,12 +43,6 @@ public class AddProductAction extends ActionSupport {
 	public void validate() {
 		CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
 		this.setCategories(categoryManagerWithRest.getCategories());
-
-		/*
-		CategoryManager categoryManager = new CategoryManagerImpl();
-		this.setCategories(categoryManager.getCategories());
-
-		*/
 
 		// Validate name:
 

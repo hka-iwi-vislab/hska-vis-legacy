@@ -29,13 +29,8 @@ public class DeleteCategoryAction extends ActionSupport {
 		User user = (User) session.get("webshop_user");
 		
 		if(user != null && (user.getRole().getTyp().equals("admin"))) {
-
 			CategoryManagerWithRest categoryManagerWithRest = new CategoryManagerWithRest();
 			categoryManagerWithRest.delCategoryById(catId);
-
-			//Delete all Products that belong to this category
-			ProductManagerWithRest productManagerWithRest = new ProductManagerWithRest();
-			productManagerWithRest.deleteProductsByCategoryId(catId);
 
 			categories = categoryManagerWithRest.getCategories();
 				
