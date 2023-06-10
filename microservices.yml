@@ -1,279 +1,282 @@
+---
 apiVersion: v1
-items:
-  - apiVersion: v1
-    kind: Service
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    app: categories
+  name: categories
+spec:
+  ports:
+    - name: "8082"
+      protocol: TCP
+      port: 8082
+      targetPort: 8082
+  selector:
+    app: categories
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    app: legacywebshop
+  name: legacywebshop
+spec:
+  ports:
+    - name: "8888"
+      protocol: TCP
+      port: 8888
+      targetPort: 8080
+  selector:
+    app: legacywebshop
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    app: products
+  name: products
+spec:
+  ports:
+    - name: "8081"
+      protocol: TCP
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: products
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    app: web-shop-db-image
+  name: web-shop-db-image
+spec:
+  ports:
+    - name: "3306"
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
+  selector:
+    app: web-shop-db-image
+status:
+  loadBalancer: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    app: categories
+  name: categories
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: categories
+  strategy: {}
+  template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-        kompose.version: 1.26.0 (40646f47)
+        kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+        kompose.version: 1.28.0 (c4137012e)
       creationTimestamp: null
       labels:
-        io.kompose.service: categories
-      name: categories
+        app: categories
     spec:
-      ports:
-        - name: "8082"
-          port: 8082
-          targetPort: 8082
-      selector:
-        io.kompose.service: categories
-    status:
-      loadBalancer: {}
-  - apiVersion: v1
-    kind: Service
+      containers:
+        - image: leodocking/categories
+          name: categories
+          ports:
+            - containerPort: 8082
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    app: legacywebshop
+  name: legacywebshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: legacywebshop
+  strategy: {}
+  template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-        kompose.version: 1.26.0 (40646f47)
+        kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+        kompose.version: 1.28.0 (c4137012e)
       creationTimestamp: null
       labels:
-        io.kompose.service: legacywebshop
-      name: legacywebshop
+        app: legacywebshop
     spec:
-      ports:
-        - name: "8888"
-          port: 8888
-          targetPort: 8080
-      selector:
-        io.kompose.service: legacywebshop
-    status:
-      loadBalancer: {}
-  - apiVersion: v1
-    kind: Service
+      containers:
+        - image: leodocking/webshop
+          name: legacywebshop
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    app: products
+  name: products
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products
+  strategy: {}
+  template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-        kompose.version: 1.26.0 (40646f47)
+        kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+        kompose.version: 1.28.0 (c4137012e)
       creationTimestamp: null
       labels:
-        io.kompose.service: products
-      name: products
+        app: products
     spec:
-      ports:
-        - name: "8081"
-          port: 8081
-          targetPort: 8081
-      selector:
-        io.kompose.service: products
-    status:
-      loadBalancer: {}
-  - apiVersion: v1
-    kind: Service
+      containers:
+        - image: leodocking/products
+          name: products
+          ports:
+            - containerPort: 8081
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    app: web-shop-db-image
+  name: web-shop-db-image
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-shop-db-image
+  strategy:
+    type: Recreate
+  template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-        kompose.version: 1.26.0 (40646f47)
+        kompose.cmd: C:\Programme (nicht installiert)\Kompose\kompose.exe convert -f docker-compose-leodocking.yml -o microleo.yml
+        kompose.version: 1.28.0 (c4137012e)
       creationTimestamp: null
       labels:
-        io.kompose.service: web-shop-db-image
-      name: web-shop-db-image
+        app: web-shop-db-image
     spec:
-      ports:
-        - name: "3306"
-          port: 3306
-          targetPort: 3306
-      selector:
-        io.kompose.service: web-shop-db-image
-    status:
-      loadBalancer: {}
-  - apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      annotations:
-        kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-        kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
-      labels:
-        io.kompose.service: categories
-      name: categories
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          io.kompose.service: categories
-      strategy: {}
-      template:
-        metadata:
-          annotations:
-            kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-            kompose.version: 1.26.0 (40646f47)
-          creationTimestamp: null
-          labels:
-            io.kompose.network/local_dev_net: "true"
-            io.kompose.service: categories
-        spec:
-          containers:
-            - image: docker.io/yoloswaglord1223/categories
-              name: categories
-              ports:
-                - containerPort: 8082
-              resources: {}
-          restartPolicy: Always
-    status: {}
-  - apiVersion: networking.k8s.io/v1
-    kind: NetworkPolicy
-    metadata:
-      creationTimestamp: null
-      name: local_dev_net
-    spec:
-      ingress:
-        - from:
-            - podSelector:
-                matchLabels:
-                  io.kompose.network/local_dev_net: "true"
-      podSelector:
-        matchLabels:
-          io.kompose.network/local_dev_net: "true"
-  - apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      annotations:
-        kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-        kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
-      labels:
-        io.kompose.service: legacywebshop
-      name: legacywebshop
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          io.kompose.service: legacywebshop
-      strategy: {}
-      template:
-        metadata:
-          annotations:
-            kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-            kompose.version: 1.26.0 (40646f47)
-          creationTimestamp: null
-          labels:
-            io.kompose.network/local_dev_net: "true"
-            io.kompose.service: legacywebshop
-        spec:
-          containers:
-            - image: docker.io/yoloswaglord1223/webshop
-              name: legacywebshop
-              ports:
-                - containerPort: 8080
-              resources: {}
-          restartPolicy: Always
-    status: {}
-  - apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      annotations:
-        kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-        kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
-      labels:
-        io.kompose.service: products
-      name: products
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          io.kompose.service: products
-      strategy: {}
-      template:
-        metadata:
-          annotations:
-            kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-            kompose.version: 1.26.0 (40646f47)
-          creationTimestamp: null
-          labels:
-            io.kompose.network/local_dev_net: "true"
-            io.kompose.service: products
-        spec:
-          containers:
-            - image: docker.io/yoloswaglord1223/products
-              name: products
-              ports:
-                - containerPort: 8081
-              resources: {}
-          restartPolicy: Always
-    status: {}
-  - apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      annotations:
-        kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-        kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
-      labels:
-        io.kompose.service: web-shop-db-image
-      name: web-shop-db-image
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          io.kompose.service: web-shop-db-image
-      strategy:
-        type: Recreate
-      template:
-        metadata:
-          annotations:
-            kompose.cmd: kompose convert -f docker-compose-local.yml -o microservices
-            kompose.version: 1.26.0 (40646f47)
-          creationTimestamp: null
-          labels:
-            io.kompose.network/local_dev_net: "true"
-            io.kompose.service: web-shop-db-image
-        spec:
-          containers:
-            - env:
-                - name: MYSQL_PASSWORD
-                  value: 240b2c6d58ff2ce2f508b49f
-                - name: MYSQL_ROOT_PASSWORD
-                  value: c8de110f37300a53a971749
-                - name: MYSQL_USER
-                  value: webshopuser
-              image: docker.io/yoloswaglord1223/webshop-database
-              name: web-shop-db-image
-              ports:
-                - containerPort: 3306
-              resources: {}
-              volumeMounts:
-                - mountPath: /var/lib/mysql
-                  name: web-shop-db-image-claim0
-                - mountPath: /docker-entrypoint-initdb.d
-                  name: web-shop-db-image-claim1
-          restartPolicy: Always
-          volumes:
-            - name: web-shop-db-image-claim0
-              persistentVolumeClaim:
-                claimName: web-shop-db-image-claim0
-            - name: web-shop-db-image-claim1
-              persistentVolumeClaim:
-                claimName: web-shop-db-image-claim1
-    status: {}
-  - apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-      creationTimestamp: null
-      labels:
-        io.kompose.service: web-shop-db-image-claim0
-      name: web-shop-db-image-claim0
-    spec:
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 100Mi
-    status: {}
-  - apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-      creationTimestamp: null
-      labels:
-        io.kompose.service: web-shop-db-image-claim1
-      name: web-shop-db-image-claim1
-    spec:
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 100Mi
-    status: {}
-kind: List
-metadata: {}
+      containers:
+        - env:
+            - name: MYSQL_PASSWORD
+              value: 240b2c6d58ff2ce2f508b49f
+            - name: MYSQL_ROOT_PASSWORD
+              value: c8de110f37300a53a971749
+            - name: MYSQL_USER
+              value: webshopuser
+            - name: MYSQL_DATABASE
+              value: webshop
+          image: web-shop-db-image:latest
+          imagePullPolicy: IfNotPresent
+          name: web-shop-db-image
+          ports:
+            - containerPort: 3306
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: web-shop-db-image-claim0
+            #- mountPath: /docker-entrypoint-initdb.d
+              #name: web-shop-db-image-claim1
+      restartPolicy: Always
+      volumes:
+        - name: web-shop-db-image-claim0
+          persistentVolumeClaim:
+            claimName: web-shop-db-image-claim0
+        #- name: web-shop-db-image-claim1
+        #  persistentVolumeClaim:
+        #    claimName: web-shop-db-image-claim1
+status: {}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    app: web-shop-db-image-claim0
+  name: web-shop-db-image-claim0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    app: web-shop-db-image-claim1
+  name: web-shop-db-image-claim1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}
 

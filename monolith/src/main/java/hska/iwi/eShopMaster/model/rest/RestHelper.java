@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class RestHelper {
 
-    public static final String productServiceUrl = "http://products-service:8081/product";
-    public static final String categoryServiceUrl = "http://categories-service:8082/category";
+    public static final String productServiceUrl = "http://products:8081/product";
+    public static final String categoryServiceUrl = "http://categories:8082/category";
 
     OkHttpClient client = new OkHttpClient();
     public static final MediaType JSON
