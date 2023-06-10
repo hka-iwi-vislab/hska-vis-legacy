@@ -1,3 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+data:
+  webshop-db-user: webshopuser
+  webshop-database: webshop
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+type: Opaque
+data:
+  db-password: MjQwYjJjNmQ1OGZmMmNlMmY1MDhiNDlm
+  db-root-password: YzhkZTExMGYzNzMwMGE1M2E5NzE3NDk=
 ---
 apiVersion: v1
 kind: Service
@@ -220,13 +236,25 @@ spec:
       containers:
         - env:
             - name: MYSQL_PASSWORD
-              value: 240b2c6d58ff2ce2f508b49f
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: db-password
             - name: MYSQL_ROOT_PASSWORD
-              value: c8de110f37300a53a971749
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: db-root-password
             - name: MYSQL_USER
-              value: webshopuser
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: webshop-db-user
             - name: MYSQL_DATABASE
-              value: webshop
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: webshop-database
           image: web-shop-db-image:latest
           imagePullPolicy: IfNotPresent
           name: web-shop-db-image
@@ -263,20 +291,3 @@ spec:
     requests:
       storage: 100Mi
 status: {}
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  creationTimestamp: null
-  labels:
-    app: web-shop-db-image-claim1
-  name: web-shop-db-image-claim1
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
-status: {}
-
