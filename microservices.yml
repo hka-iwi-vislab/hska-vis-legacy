@@ -255,7 +255,7 @@ spec:
                 configMapKeyRef:
                   name: mysql-config
                   key: webshop-database
-          image: web-shop-db-image:latest
+          image: leodocking/webshop-database
           imagePullPolicy: IfNotPresent
           name: web-shop-db-image
           ports:
