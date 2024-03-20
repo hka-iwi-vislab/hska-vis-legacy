@@ -3,409 +3,421 @@
   <ID>JAVA</ID>
   <OriginalElement>hska.iwi.eShopMaster.model</OriginalElement>
   <nodes>
-    <node x="1405.0" y="506.0">hska.iwi.eShopMaster.controller.LogoutAction</node>
-    <node x="1025.5" y="1126.0">hska.iwi.eShopMaster.controller.SearchAction</node>
-    <node x="46.5" y="1126.0">hska.iwi.eShopMaster.controller.AddProductAction</node>
-    <node x="441.5" y="266.0">hska.iwi.eShopMaster.model.database.dataobjects.Category</node>
-    <node x="-270.5" y="846.0">hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl</node>
-    <node x="-274.5" y="506.0">hska.iwi.eShopMaster.model.businessLogic.manager.UserManager</node>
-    <node x="1149.5" y="506.0">hska.iwi.eShopMaster.model.database.dataAccessObjects.ProductDAO</node>
-    <node x="784.0" y="266.0">hska.iwi.eShopMaster.model.database.dataAccessObjects.CategoryDAO</node>
-    <node x="3.0" y="506.0">hska.iwi.eShopMaster.model.database.dataAccessObjects.RoleDAO</node>
-    <node x="-118.5" y="446.0">hska.iwi.eShopMaster.model.database.dataAccessObjects.UserDAO</node>
-    <node x="370.0" y="786.0">hska.iwi.eShopMaster.controller.InitCategorySiteAction</node>
-    <node x="199.0" y="506.0">hska.iwi.eShopMaster.model.database.dataobjects.User</node>
-    <node x="1406.5" y="326.0">hska.iwi.eShopMaster.model.sessionFactory.util.HibernateUtil</node>
-    <node x="835.5" y="1066.0">hska.iwi.eShopMaster.controller.ProductDetailsAction</node>
-    <node x="1157.5" y="786.0">hska.iwi.eShopMaster.controller.DeleteProductAction</node>
-    <node x="608.0" y="326.0">hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager</node>
-    <node x="913.5" y="446.0">hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager</node>
-    <node x="-164.0" y="-14.0">hska.iwi.eShopMaster.model.database.dataAccessObjects.IGenericDAO</node>
-    <node x="957.5" y="846.0">hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl</node>
-    <node x="-139.5" y="1066.0">hska.iwi.eShopMaster.controller.RegisterAction</node>
-    <node x="200.5" y="326.0">hska.iwi.eShopMaster.model.database.dataobjects.Role</node>
-    <node x="652.0" y="846.0">hska.iwi.eShopMaster.controller.DeleteCategoryAction</node>
-    <node x="712.0" y="506.0">hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl</node>
-    <node x="201.0" y="846.0">hska.iwi.eShopMaster.controller.AddCategoryAction</node>
-    <node x="1174.0" y="1066.0">hska.iwi.eShopMaster.controller.ListAllProductsAction</node>
-    <node x="487.0" y="126.0">hska.iwi.eShopMaster.model.database.dataobjects.Product</node>
-    <node x="-249.5" y="1126.0">hska.iwi.eShopMaster.controller.LoginAction</node>
+    <node x="1069.5" y="346.0">hska.iwi.eShopMaster.model.database.dataAccessObjects.ProductDAO</node>
+    <node x="1157.5" y="546.0">hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl</node>
+    <node x="1134.0" y="846.0">hska.iwi.eShopMaster.controller.ListAllProductsAction</node>
+    <node x="161.0" y="606.0">hska.iwi.eShopMaster.controller.AddCategoryAction</node>
+    <node x="25.5" y="906.0">hska.iwi.eShopMaster.controller.SearchAction</node>
+    <node x="-109.5" y="846.0">hska.iwi.eShopMaster.controller.LoginAction</node>
+    <node x="-274.5" y="346.0">hska.iwi.eShopMaster.model.businessLogic.manager.UserManager</node>
+    <node x="581.5" y="166.0">hska.iwi.eShopMaster.model.database.dataobjects.Category</node>
+    <node x="1173.5" y="286.0">hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager</node>
+    <node x="692.0" y="286.0">hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl</node>
+    <node x="1037.5" y="606.0">hska.iwi.eShopMaster.controller.DeleteProductAction</node>
+    <node x="465.0" y="106.0">hska.iwi.eShopMaster.controller.LogoutAction</node>
+    <node x="-259.5" y="906.0">hska.iwi.eShopMaster.controller.RegisterAction</node>
+    <node x="410.0" y="606.0">hska.iwi.eShopMaster.controller.InitCategorySiteAction</node>
+    <node x="-204.0" y="-14.0">hska.iwi.eShopMaster.model.database.dataAccessObjects.IGenericDAO</node>
+    <node x="692.0" y="606.0">hska.iwi.eShopMaster.controller.DeleteCategoryAction</node>
+    <node x="1166.5" y="166.0">hska.iwi.eShopMaster.model.sessionFactory.util.HibernateUtil</node>
+    <node x="587.0" y="346.0">hska.iwi.eShopMaster.model.database.dataobjects.Product</node>
+    <node x="786.5" y="846.0">hska.iwi.eShopMaster.controller.AddProductAction</node>
+    <node x="80.5" y="166.0">hska.iwi.eShopMaster.model.database.dataobjects.Role</node>
+    <node x="684.0" y="106.0">hska.iwi.eShopMaster.model.database.dataAccessObjects.CategoryDAO</node>
+    <node x="-157.0" y="286.0">hska.iwi.eShopMaster.model.database.dataAccessObjects.RoleDAO</node>
+    <node x="828.0" y="166.0">hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager</node>
+    <node x="-78.5" y="346.0">hska.iwi.eShopMaster.model.database.dataAccessObjects.UserDAO</node>
+    <node x="79.0" y="346.0">hska.iwi.eShopMaster.model.database.dataobjects.User</node>
+    <node x="-270.5" y="606.0">hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl</node>
+    <node x="955.5" y="906.0">hska.iwi.eShopMaster.controller.ProductDetailsAction</node>
   </nodes>
   <notes />
   <edges>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.RoleDAO" relationship="CREATE">
-      <point x="61.66666666666667" y="-14.0" />
-      <point x="-116.33333333333331" y="820.0" />
-      <point x="-98.0" y="820.0" />
-      <point x="-98.0" y="580.0" />
-      <point x="62.0" y="580.0" />
+      <point x="0.0" y="-14.0" />
+      <point x="-178.0" y="580.0" />
+      <point x="-138.0" y="580.0" />
+      <point x="-138.0" y="420.0" />
+      <point x="-98.0" y="420.0" />
       <point x="0.0" y="14.0" />
-    </edge>
-    <edge source="hska.iwi.eShopMaster.controller.SearchAction" target="hska.iwi.eShopMaster.model.database.dataobjects.User" relationship="TO_ONE">
-      <point x="-38.25" y="-14.0" />
-      <point x="1063.75" y="1000.0" />
-      <point x="142.0" y="1000.0" />
-      <point x="142.0" y="920.0" />
-      <point x="62.0" y="920.0" />
-      <point x="62.0" y="620.0" />
-      <point x="262.0" y="620.0" />
-      <point x="262.0" y="560.0" />
-      <point x="263.5" y="560.0" />
-      <point x="21.5" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.AddCategoryAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl" relationship="CREATE">
       <point x="50.5" y="-14.0" />
-      <point x="352.5" y="740.0" />
-      <point x="822.0" y="740.0" />
+      <point x="312.5" y="540.0" />
+      <point x="702.0" y="540.0" />
+      <point x="702.0" y="400.0" />
+      <point x="802.0" y="400.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.ProductDetailsAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl" relationship="CREATE">
       <point x="53.25" y="-14.0" />
-      <point x="995.25" y="1040.0" />
-      <point x="1062.0" y="1040.0" />
+      <point x="1115.25" y="820.0" />
+      <point x="1262.0" y="820.0" />
       <point x="0.0" y="14.0" />
     </edge>
-    <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl" target="hska.iwi.eShopMaster.model.businessLogic.manager.UserManager" relationship="REALIZATION">
-      <point x="-61.666666666666686" y="-14.0" />
-      <point x="-239.66666666666669" y="820.0" />
-      <point x="-198.0" y="820.0" />
+    <edge source="hska.iwi.eShopMaster.controller.SearchAction" target="hska.iwi.eShopMaster.model.database.dataobjects.User" relationship="TO_ONE">
+      <point x="20.0" y="-14.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.UserDAO" relationship="TO_ONE">
-      <point x="0.0" y="-14.0" />
-      <point x="-178.0" y="560.0" />
-      <point x="-88.25" y="560.0" />
-      <point x="-30.25" y="14.0" />
+      <point x="61.66666666666667" y="-14.0" />
+      <point x="-116.33333333333331" y="400.0" />
+      <point x="12.25" y="400.0" />
+      <point x="30.25" y="14.0" />
+    </edge>
+    <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl" target="hska.iwi.eShopMaster.model.businessLogic.manager.UserManager" relationship="REALIZATION">
+      <point x="-61.666666666666686" y="-14.0" />
+      <point x="-239.66666666666669" y="580.0" />
+      <point x="-198.0" y="580.0" />
+      <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.database.dataAccessObjects.CategoryDAO" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.IGenericDAO" relationship="REALIZATION">
-      <point x="0.0" y="0.0" />
-      <point x="0.0" y="0.0" />
-    </edge>
-    <edge source="hska.iwi.eShopMaster.controller.InitCategorySiteAction" target="hska.iwi.eShopMaster.model.database.dataobjects.Category" relationship="TO_MANY">
-      <point x="-56.0" y="-14.0" />
-      <point x="426.0" y="760.0" />
-      <point x="422.0" y="760.0" />
-      <point x="422.0" y="500.0" />
-      <point x="462.0" y="500.0" />
-      <point x="462.0" y="320.0" />
-      <point x="471.75" y="320.0" />
-      <point x="-30.25" y="14.0" />
+      <point x="0.0" y="-14.0" />
+      <point x="762.0" y="80.0" />
+      <point x="-98.0" y="80.0" />
+      <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.DeleteProductAction" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.ProductDAO" relationship="CREATE">
       <point x="0.0" y="-14.0" />
-      <point x="1262.0" y="560.0" />
-      <point x="1258.25" y="560.0" />
-      <point x="36.25" y="14.0" />
+      <point x="1142.0" y="500.0" />
+      <point x="1102.0" y="500.0" />
+      <point x="1102.0" y="400.0" />
+      <point x="1105.75" y="400.0" />
+      <point x="-36.25" y="14.0" />
+    </edge>
+    <edge source="hska.iwi.eShopMaster.controller.InitCategorySiteAction" target="hska.iwi.eShopMaster.model.database.dataobjects.Category" relationship="TO_MANY">
+      <point x="-56.0" y="-14.0" />
+      <point x="466.0" y="580.0" />
+      <point x="462.0" y="580.0" />
+      <point x="462.0" y="320.0" />
+      <point x="502.0" y="320.0" />
+      <point x="502.0" y="220.0" />
+      <point x="601.6666666666666" y="220.0" />
+      <point x="-40.33333333333333" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl" target="hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager" relationship="REALIZATION">
-      <point x="-69.66666666666666" y="-14.0" />
-      <point x="992.3333333333333" y="820.0" />
-      <point x="1002.0" y="820.0" />
+      <point x="69.66666666666666" y="-14.0" />
+      <point x="1331.6666666666667" y="480.0" />
+      <point x="1262.0" y="480.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.SearchAction" target="hska.iwi.eShopMaster.model.database.dataobjects.Product" relationship="TO_MANY">
       <point x="-38.25" y="-14.0" />
-      <point x="1063.75" y="1000.0" />
-      <point x="142.0" y="1000.0" />
-      <point x="142.0" y="920.0" />
-      <point x="622.0" y="920.0" />
-      <point x="622.0" y="720.0" />
-      <point x="542.0" y="720.0" />
-      <point x="542.0" y="500.0" />
-      <point x="582.0" y="500.0" />
-      <point x="582.0" y="240.0" />
-      <point x="542.0" y="240.0" />
-      <point x="0.0" y="14.0" />
+      <point x="63.75" y="880.0" />
+      <point x="62.0" y="880.0" />
+      <point x="62.0" y="660.0" />
+      <point x="382.0" y="660.0" />
+      <point x="382.0" y="560.0" />
+      <point x="622.0" y="560.0" />
+      <point x="622.0" y="400.0" />
+      <point x="614.5" y="400.0" />
+      <point x="-27.5" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.ListAllProductsAction" target="hska.iwi.eShopMaster.model.database.dataobjects.User" relationship="TO_ONE">
-      <point x="54.0" y="-14.0" />
-      <point x="1336.0" y="1040.0" />
-      <point x="1342.0" y="1040.0" />
-      <point x="1342.0" y="900.0" />
-      <point x="102.0" y="900.0" />
-      <point x="102.0" y="620.0" />
-      <point x="262.0" y="620.0" />
-      <point x="262.0" y="560.0" />
-      <point x="263.5" y="560.0" />
+      <point x="-54.0" y="-14.0" />
+      <point x="1188.0" y="780.0" />
+      <point x="942.0" y="780.0" />
+      <point x="942.0" y="680.0" />
+      <point x="62.0" y="680.0" />
+      <point x="62.0" y="460.0" />
+      <point x="142.0" y="460.0" />
+      <point x="142.0" y="400.0" />
+      <point x="143.5" y="400.0" />
       <point x="21.5" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl" target="hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager" relationship="REALIZATION">
-      <point x="0.0" y="-14.0" />
-      <point x="822.0" y="400.0" />
-      <point x="702.0" y="400.0" />
+      <point x="73.33333333333334" y="-14.0" />
+      <point x="875.3333333333333" y="260.0" />
+      <point x="922.0" y="260.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.RegisterAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl" relationship="CREATE">
       <point x="-40.75" y="-14.0" />
-      <point x="-98.75" y="1040.0" />
-      <point x="-178.0" y="1040.0" />
+      <point x="-218.75" y="820.0" />
+      <point x="-178.0" y="820.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.database.dataAccessObjects.UserDAO" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.IGenericDAO" relationship="REALIZATION">
-      <point x="0.0" y="0.0" />
-      <point x="0.0" y="0.0" />
+      <point x="0.0" y="-14.0" />
+      <point x="-18.0" y="80.0" />
+      <point x="-98.0" y="80.0" />
+      <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.database.dataAccessObjects.ProductDAO" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.IGenericDAO" relationship="REALIZATION">
-      <point x="0.0" y="0.0" />
-      <point x="0.0" y="0.0" />
+      <point x="0.0" y="-14.0" />
+      <point x="1142.0" y="80.0" />
+      <point x="-98.0" y="80.0" />
+      <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.database.dataAccessObjects.RoleDAO" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.IGenericDAO" relationship="REALIZATION">
-      <point x="0.0" y="0.0" />
-      <point x="0.0" y="0.0" />
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.SearchAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl" relationship="CREATE">
       <point x="38.25" y="-14.0" />
-      <point x="1140.25" y="1100.0" />
-      <point x="1142.0" y="1100.0" />
-      <point x="1142.0" y="940.0" />
-      <point x="942.0" y="940.0" />
-      <point x="942.0" y="740.0" />
-      <point x="822.0" y="740.0" />
+      <point x="140.25" y="760.0" />
+      <point x="1022.0" y="760.0" />
+      <point x="1022.0" y="540.0" />
+      <point x="702.0" y="540.0" />
+      <point x="702.0" y="400.0" />
+      <point x="802.0" y="400.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.AddProductAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl" relationship="CREATE">
       <point x="47.75" y="-14.0" />
-      <point x="189.75" y="1020.0" />
-      <point x="902.0" y="1020.0" />
-      <point x="902.0" y="740.0" />
-      <point x="822.0" y="740.0" />
+      <point x="929.75" y="820.0" />
+      <point x="982.0" y="820.0" />
+      <point x="982.0" y="540.0" />
+      <point x="702.0" y="540.0" />
+      <point x="702.0" y="400.0" />
+      <point x="802.0" y="400.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.AddProductAction" target="hska.iwi.eShopMaster.model.database.dataobjects.Category" relationship="TO_MANY">
       <point x="-47.75" y="-14.0" />
-      <point x="94.25" y="940.0" />
-      <point x="142.0" y="940.0" />
-      <point x="142.0" y="640.0" />
-      <point x="302.0" y="640.0" />
-      <point x="302.0" y="500.0" />
-      <point x="462.0" y="500.0" />
-      <point x="462.0" y="320.0" />
-      <point x="471.75" y="320.0" />
-      <point x="-30.25" y="14.0" />
+      <point x="834.25" y="720.0" />
+      <point x="142.0" y="720.0" />
+      <point x="142.0" y="540.0" />
+      <point x="222.0" y="540.0" />
+      <point x="222.0" y="320.0" />
+      <point x="502.0" y="320.0" />
+      <point x="502.0" y="220.0" />
+      <point x="601.6666666666666" y="220.0" />
+      <point x="-40.33333333333333" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.ProductDAO" relationship="CREATE">
-      <point x="0.0" y="-14.0" />
-      <point x="1062.0" y="820.0" />
-      <point x="1122.0" y="820.0" />
-      <point x="1122.0" y="740.0" />
-      <point x="1262.0" y="740.0" />
-      <point x="1262.0" y="560.0" />
-      <point x="1258.25" y="560.0" />
-      <point x="36.25" y="14.0" />
+      <point x="-69.66666666666666" y="-14.0" />
+      <point x="1192.3333333333333" y="520.0" />
+      <point x="1062.0" y="520.0" />
+      <point x="1062.0" y="480.0" />
+      <point x="1102.0" y="480.0" />
+      <point x="1102.0" y="400.0" />
+      <point x="1105.75" y="400.0" />
+      <point x="-36.25" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.RegisterAction" target="hska.iwi.eShopMaster.model.database.dataobjects.Role" relationship="TO_ONE">
       <point x="40.75" y="-14.0" />
-      <point x="-17.25" y="1040.0" />
-      <point x="-18.0" y="1040.0" />
-      <point x="-18.0" y="600.0" />
-      <point x="182.0" y="600.0" />
-      <point x="182.0" y="480.0" />
-      <point x="242.0" y="480.0" />
+      <point x="-137.25" y="800.0" />
+      <point x="-58.0" y="800.0" />
+      <point x="-58.0" y="440.0" />
+      <point x="62.0" y="440.0" />
+      <point x="62.0" y="320.0" />
+      <point x="122.0" y="320.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl" relationship="CREATE">
-      <point x="0.0" y="-14.0" />
-      <point x="1062.0" y="820.0" />
-      <point x="1122.0" y="820.0" />
-      <point x="1122.0" y="720.0" />
-      <point x="822.0" y="720.0" />
+      <point x="-69.66666666666666" y="-14.0" />
+      <point x="1192.3333333333333" y="520.0" />
+      <point x="1062.0" y="520.0" />
+      <point x="1062.0" y="420.0" />
+      <point x="702.0" y="420.0" />
+      <point x="702.0" y="400.0" />
+      <point x="802.0" y="400.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.ProductDetailsAction" target="hska.iwi.eShopMaster.model.database.dataobjects.Product" relationship="TO_ONE">
       <point x="-53.25" y="-14.0" />
-      <point x="888.75" y="1040.0" />
-      <point x="22.0" y="1040.0" />
-      <point x="22.0" y="1020.0" />
-      <point x="-58.0" y="1020.0" />
-      <point x="-58.0" y="560.0" />
-      <point x="142.0" y="560.0" />
-      <point x="142.0" y="240.0" />
-      <point x="542.0" y="240.0" />
-      <point x="0.0" y="14.0" />
+      <point x="1008.75" y="800.0" />
+      <point x="662.0" y="800.0" />
+      <point x="662.0" y="560.0" />
+      <point x="622.0" y="560.0" />
+      <point x="622.0" y="400.0" />
+      <point x="614.5" y="400.0" />
+      <point x="-27.5" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl" target="hska.iwi.eShopMaster.model.database.dataobjects.Category" relationship="CREATE">
       <point x="-73.33333333333334" y="-14.0" />
-      <point x="748.6666666666667" y="480.0" />
-      <point x="742.0" y="480.0" />
-      <point x="742.0" y="380.0" />
-      <point x="532.25" y="380.0" />
-      <point x="30.25" y="14.0" />
+      <point x="728.6666666666667" y="260.0" />
+      <point x="722.0" y="260.0" />
+      <point x="722.0" y="220.0" />
+      <point x="682.3333333333334" y="220.0" />
+      <point x="40.33333333333333" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.SearchAction" target="hska.iwi.eShopMaster.model.database.dataobjects.Category" relationship="TO_MANY">
       <point x="-38.25" y="-14.0" />
-      <point x="1063.75" y="1000.0" />
-      <point x="142.0" y="1000.0" />
-      <point x="142.0" y="920.0" />
-      <point x="182.0" y="920.0" />
-      <point x="182.0" y="720.0" />
-      <point x="462.0" y="720.0" />
-      <point x="462.0" y="320.0" />
-      <point x="471.75" y="320.0" />
-      <point x="-30.25" y="14.0" />
+      <point x="63.75" y="880.0" />
+      <point x="62.0" y="880.0" />
+      <point x="62.0" y="660.0" />
+      <point x="102.0" y="660.0" />
+      <point x="102.0" y="520.0" />
+      <point x="182.0" y="520.0" />
+      <point x="182.0" y="320.0" />
+      <point x="502.0" y="320.0" />
+      <point x="502.0" y="220.0" />
+      <point x="601.6666666666666" y="220.0" />
+      <point x="-40.33333333333333" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl" target="hska.iwi.eShopMaster.model.database.dataobjects.User" relationship="CREATE">
-      <point x="61.66666666666667" y="-14.0" />
-      <point x="-116.33333333333331" y="820.0" />
-      <point x="-98.0" y="820.0" />
-      <point x="-98.0" y="580.0" />
-      <point x="220.5" y="580.0" />
+      <point x="0.0" y="-14.0" />
+      <point x="-178.0" y="580.0" />
+      <point x="-138.0" y="580.0" />
+      <point x="-138.0" y="420.0" />
+      <point x="100.5" y="420.0" />
       <point x="-21.5" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.database.dataobjects.Product" target="hska.iwi.eShopMaster.model.database.dataobjects.Category" relationship="TO_ONE">
-      <point x="-36.66666666666667" y="14.0" />
-      <point x="505.33333333333337" y="220.0" />
-      <point x="471.75" y="220.0" />
-      <point x="-30.25" y="-14.0" />
-    </edge>
-    <edge source="hska.iwi.eShopMaster.controller.AddCategoryAction" target="hska.iwi.eShopMaster.model.database.dataobjects.User" relationship="TO_ONE">
-      <point x="-50.5" y="-14.0" />
-      <point x="251.5" y="820.0" />
-      <point x="262.0" y="820.0" />
-      <point x="262.0" y="560.0" />
-      <point x="263.5" y="560.0" />
-      <point x="21.5" y="14.0" />
+      <point x="-27.5" y="-14.0" />
+      <point x="614.5" y="320.0" />
+      <point x="502.0" y="320.0" />
+      <point x="502.0" y="220.0" />
+      <point x="601.6666666666666" y="220.0" />
+      <point x="-40.33333333333333" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.AddProductAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl" relationship="CREATE">
       <point x="47.75" y="-14.0" />
-      <point x="189.75" y="1020.0" />
-      <point x="902.0" y="1020.0" />
-      <point x="902.0" y="980.0" />
-      <point x="1062.0" y="980.0" />
+      <point x="929.75" y="820.0" />
+      <point x="982.0" y="820.0" />
+      <point x="982.0" y="660.0" />
+      <point x="1262.0" y="660.0" />
       <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="hska.iwi.eShopMaster.controller.AddCategoryAction" target="hska.iwi.eShopMaster.model.database.dataobjects.User" relationship="TO_ONE">
+      <point x="-50.5" y="-14.0" />
+      <point x="211.5" y="580.0" />
+      <point x="202.0" y="580.0" />
+      <point x="202.0" y="480.0" />
+      <point x="142.0" y="480.0" />
+      <point x="142.0" y="400.0" />
+      <point x="143.5" y="400.0" />
+      <point x="21.5" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.InitCategorySiteAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl" relationship="CREATE">
       <point x="56.0" y="-14.0" />
-      <point x="538.0" y="740.0" />
-      <point x="822.0" y="740.0" />
+      <point x="578.0" y="540.0" />
+      <point x="702.0" y="540.0" />
+      <point x="702.0" y="400.0" />
+      <point x="802.0" y="400.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.UserDAO" relationship="CREATE">
-      <point x="61.66666666666667" y="-14.0" />
-      <point x="-116.33333333333331" y="820.0" />
-      <point x="-98.0" y="820.0" />
-      <point x="-98.0" y="580.0" />
-      <point x="-27.75" y="580.0" />
-      <point x="30.25" y="14.0" />
+      <point x="0.0" y="-14.0" />
+      <point x="-178.0" y="580.0" />
+      <point x="-138.0" y="580.0" />
+      <point x="-138.0" y="420.0" />
+      <point x="-48.25" y="420.0" />
+      <point x="-30.25" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.CategoryDAO" relationship="CREATE">
       <point x="-73.33333333333334" y="-14.0" />
-      <point x="748.6666666666667" y="480.0" />
-      <point x="742.0" y="480.0" />
-      <point x="742.0" y="380.0" />
-      <point x="823.0" y="380.0" />
+      <point x="728.6666666666667" y="260.0" />
+      <point x="722.0" y="260.0" />
+      <point x="722.0" y="220.0" />
+      <point x="723.0" y="220.0" />
       <point x="-39.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.InitCategorySiteAction" target="hska.iwi.eShopMaster.model.database.dataobjects.User" relationship="TO_ONE">
       <point x="-56.0" y="-14.0" />
-      <point x="426.0" y="760.0" />
-      <point x="422.0" y="760.0" />
-      <point x="422.0" y="660.0" />
-      <point x="262.0" y="660.0" />
-      <point x="262.0" y="560.0" />
-      <point x="263.5" y="560.0" />
+      <point x="466.0" y="580.0" />
+      <point x="462.0" y="580.0" />
+      <point x="462.0" y="420.0" />
+      <point x="142.0" y="420.0" />
+      <point x="142.0" y="400.0" />
+      <point x="143.5" y="400.0" />
       <point x="21.5" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.DeleteCategoryAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl" relationship="CREATE">
       <point x="55.0" y="-14.0" />
-      <point x="817.0" y="740.0" />
-      <point x="822.0" y="740.0" />
+      <point x="857.0" y="540.0" />
+      <point x="702.0" y="540.0" />
+      <point x="702.0" y="400.0" />
+      <point x="802.0" y="400.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.AddCategoryAction" target="hska.iwi.eShopMaster.model.database.dataobjects.Category" relationship="TO_MANY">
       <point x="-50.5" y="-14.0" />
-      <point x="251.5" y="820.0" />
-      <point x="262.0" y="820.0" />
-      <point x="262.0" y="700.0" />
-      <point x="342.0" y="700.0" />
-      <point x="342.0" y="500.0" />
-      <point x="462.0" y="500.0" />
-      <point x="462.0" y="320.0" />
-      <point x="471.75" y="320.0" />
-      <point x="-30.25" y="14.0" />
+      <point x="211.5" y="580.0" />
+      <point x="202.0" y="580.0" />
+      <point x="202.0" y="560.0" />
+      <point x="262.0" y="560.0" />
+      <point x="262.0" y="320.0" />
+      <point x="502.0" y="320.0" />
+      <point x="502.0" y="220.0" />
+      <point x="601.6666666666666" y="220.0" />
+      <point x="-40.33333333333333" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.database.dataobjects.User" target="hska.iwi.eShopMaster.model.database.dataobjects.Role" relationship="TO_ONE">
       <point x="0.0" y="-14.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.ProductDAO" relationship="TO_ONE">
-      <point x="69.66666666666666" y="-14.0" />
-      <point x="1131.6666666666667" y="760.0" />
-      <point x="1185.75" y="760.0" />
-      <point x="-36.25" y="14.0" />
+      <point x="0.0" y="-14.0" />
+      <point x="1262.0" y="500.0" />
+      <point x="1178.25" y="500.0" />
+      <point x="36.25" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.ListAllProductsAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl" relationship="CREATE">
-      <point x="-54.0" y="-14.0" />
-      <point x="1228.0" y="1040.0" />
-      <point x="1062.0" y="1040.0" />
-      <point x="0.0" y="14.0" />
-    </edge>
-    <edge source="hska.iwi.eShopMaster.model.database.dataobjects.Category" target="hska.iwi.eShopMaster.model.database.dataobjects.Product" relationship="TO_MANY">
-      <point x="30.25" y="-14.0" />
-      <point x="532.25" y="240.0" />
-      <point x="542.0" y="240.0" />
+      <point x="54.0" y="-14.0" />
+      <point x="1296.0" y="820.0" />
+      <point x="1262.0" y="820.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.LoginAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl" relationship="CREATE">
       <point x="0.0" y="-14.0" />
+      <point x="-38.0" y="820.0" />
+      <point x="-178.0" y="820.0" />
       <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="hska.iwi.eShopMaster.model.database.dataobjects.Category" target="hska.iwi.eShopMaster.model.database.dataobjects.Product" relationship="TO_MANY">
+      <point x="0.0" y="14.0" />
+      <point x="642.0" y="320.0" />
+      <point x="669.5" y="320.0" />
+      <point x="27.5" y="-14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.SearchAction" target="hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl" relationship="CREATE">
       <point x="38.25" y="-14.0" />
-      <point x="1140.25" y="1100.0" />
-      <point x="1142.0" y="1100.0" />
-      <point x="1142.0" y="920.0" />
-      <point x="1062.0" y="920.0" />
+      <point x="140.25" y="760.0" />
+      <point x="1022.0" y="760.0" />
+      <point x="1022.0" y="740.0" />
+      <point x="1262.0" y="740.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl" target="hska.iwi.eShopMaster.model.database.dataobjects.Product" relationship="CREATE">
-      <point x="0.0" y="-14.0" />
-      <point x="1062.0" y="820.0" />
-      <point x="1122.0" y="820.0" />
-      <point x="1122.0" y="220.0" />
-      <point x="578.6666666666666" y="220.0" />
-      <point x="36.66666666666667" y="14.0" />
+      <point x="-69.66666666666666" y="-14.0" />
+      <point x="1192.3333333333333" y="520.0" />
+      <point x="1062.0" y="520.0" />
+      <point x="1062.0" y="440.0" />
+      <point x="669.5" y="440.0" />
+      <point x="27.5" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl" target="hska.iwi.eShopMaster.model.database.dataAccessObjects.CategoryDAO" relationship="TO_ONE">
-      <point x="73.33333333333334" y="-14.0" />
-      <point x="895.3333333333333" y="420.0" />
-      <point x="901.0" y="420.0" />
+      <point x="0.0" y="-14.0" />
+      <point x="802.0" y="260.0" />
+      <point x="801.0" y="260.0" />
       <point x="39.0" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.ProductDetailsAction" target="hska.iwi.eShopMaster.model.database.dataobjects.User" relationship="TO_ONE">
       <point x="-53.25" y="-14.0" />
-      <point x="888.75" y="1040.0" />
-      <point x="22.0" y="1040.0" />
-      <point x="22.0" y="620.0" />
-      <point x="262.0" y="620.0" />
-      <point x="262.0" y="560.0" />
-      <point x="263.5" y="560.0" />
+      <point x="1008.75" y="800.0" />
+      <point x="662.0" y="800.0" />
+      <point x="662.0" y="740.0" />
+      <point x="22.0" y="740.0" />
+      <point x="22.0" y="460.0" />
+      <point x="142.0" y="460.0" />
+      <point x="142.0" y="400.0" />
+      <point x="143.5" y="400.0" />
       <point x="21.5" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.DeleteCategoryAction" target="hska.iwi.eShopMaster.model.database.dataobjects.Category" relationship="TO_MANY">
       <point x="-55.0" y="-14.0" />
-      <point x="707.0" y="700.0" />
-      <point x="502.0" y="700.0" />
-      <point x="502.0" y="500.0" />
-      <point x="462.0" y="500.0" />
-      <point x="462.0" y="320.0" />
-      <point x="471.75" y="320.0" />
-      <point x="-30.25" y="14.0" />
+      <point x="747.0" y="520.0" />
+      <point x="502.0" y="520.0" />
+      <point x="502.0" y="220.0" />
+      <point x="601.6666666666666" y="220.0" />
+      <point x="-40.33333333333333" y="14.0" />
     </edge>
     <edge source="hska.iwi.eShopMaster.controller.ListAllProductsAction" target="hska.iwi.eShopMaster.model.database.dataobjects.Product" relationship="TO_MANY">
-      <point x="54.0" y="-14.0" />
-      <point x="1336.0" y="1040.0" />
-      <point x="1342.0" y="1040.0" />
-      <point x="1342.0" y="900.0" />
-      <point x="1382.0" y="900.0" />
-      <point x="1382.0" y="240.0" />
-      <point x="542.0" y="240.0" />
-      <point x="0.0" y="14.0" />
+      <point x="-54.0" y="-14.0" />
+      <point x="1188.0" y="780.0" />
+      <point x="942.0" y="780.0" />
+      <point x="942.0" y="560.0" />
+      <point x="622.0" y="560.0" />
+      <point x="622.0" y="400.0" />
+      <point x="614.5" y="400.0" />
+      <point x="-27.5" y="14.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Compact" zoom="0.8176914778856527" showDependencies="true" x="642.0" y="570.0" />
-  <SelectedNodes>
-    <node>hska.iwi.eShopMaster.model.database.dataAccessObjects.IGenericDAO</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Compact" zoom="0.8459687123947052" showDependencies="true" x="546.0" y="460.0" />
+  <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
