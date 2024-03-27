@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hka</groupId>
-	<artifactId>productmanagement</artifactId>
+	<artifactId>usermanagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>productmanagement</name>
-	<description>Verteilte Systeme</description>
+	<name>usermanagement</name>
+	<description>User Management Microservice</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
