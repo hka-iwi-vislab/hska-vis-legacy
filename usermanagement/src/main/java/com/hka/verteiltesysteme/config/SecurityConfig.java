@@ -1,11 +1,13 @@
 package com.hka.verteiltesysteme.config;
 
+import com.hka.verteiltesysteme.repositories.UserRepo;
 import com.hka.verteiltesysteme.services.CustomAuthenticationProvider;
 import com.hka.verteiltesysteme.services.CustomUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,7 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomAuthenticationProvider authenticationProvider) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/login", "/register").permitAll()
                         .anyRequest().authenticated()
                 );
 
@@ -35,18 +37,13 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager() {
-
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-
+    public AuthenticationManager authenticationManager(CustomAuthenticationProvider authenticationProvider) {
         return new ProviderManager(authenticationProvider);
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return new CustomUserDetailService();
+    public UserDetailsService userDetailsService(UserRepo userRepo) {
+        return new CustomUserDetailService(userRepo);
     }
 
     @Bean
