@@ -8,21 +8,20 @@ import com.hka.verteiltesysteme.repositories.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.Optional;
 
 
 @RestController
 @RequiredArgsConstructor
-public class RegisterController {
+public class UserController {
 
     private final UserRepo userRepo;
     private final RoleRepo roleRepo;
 
-    @PostMapping("/register")
+    @PostMapping("user/register")
     public ResponseEntity<String> registerUser(@RequestBody @Validated UserDto user) {
 
         Role role = roleRepo.findByLevel(1);
@@ -36,5 +35,19 @@ public class RegisterController {
                 .build());
 
         return ResponseEntity.created(URI.create("/hallo")).build();
+    }
+
+    @GetMapping("/user/find/{id}")
+    public ResponseEntity<User> findUser(@PathVariable int id){
+        Optional<User> user = userRepo.findById(id);
+
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/user/delete/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable int id){
+       userRepo.deleteById(id);
+
+       return ResponseEntity.ok(null);
     }
 }
