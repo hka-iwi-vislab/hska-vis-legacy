@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
     private final ProductRepo productRepo;
 
-    @PostMapping
+    @PostMapping("/product")
     public ResponseEntity<String> CreateProduct(CreateProductDto createProductDto) {
         try {
             var product = Product.builder().name(createProductDto.name()).build();
@@ -26,7 +26,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/product")
     public ResponseEntity<String> DeleteProduct(int id) {
         try {
             productRepo.deleteById(id);
@@ -36,7 +36,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/product")
     public ResponseEntity<Product> GetProduct(int id) {
         try {
             return ResponseEntity.ok(productRepo.findById(id).orElse(null));
@@ -45,7 +45,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping("/product/all")
     public ResponseEntity<Iterable<Product>> GetProducts() {
         try {
             return ResponseEntity.ok(productRepo.findAll());

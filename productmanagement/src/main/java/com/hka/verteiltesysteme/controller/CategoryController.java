@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/category")
+@RestController
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryRepo categoryRepo;
 
-    @PostMapping
+    @PostMapping("/category")
     public ResponseEntity<String> CreateCategory(CreateCategoryDto createCategoryDto) {
         try {
             var category = Category.builder().name(createCategoryDto.name()).build();
@@ -26,7 +26,7 @@ public class CategoryController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/category")
     public ResponseEntity<String> DeleteCategory(int id) {
         try {
             categoryRepo.deleteById(id);
@@ -36,7 +36,7 @@ public class CategoryController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/category")
     public ResponseEntity<Category> GetCategory(int id) {
         try {
             return ResponseEntity.ok(categoryRepo.findById(id).orElse(null));
@@ -45,7 +45,7 @@ public class CategoryController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping("/category/all")
     public ResponseEntity<Iterable<Category>> GetCategories() {
         try {
             return ResponseEntity.ok(categoryRepo.findAll());
