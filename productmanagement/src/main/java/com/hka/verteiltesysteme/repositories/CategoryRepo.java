@@ -1,10 +1,9 @@
 package com.hka.verteiltesysteme.repositories;
 
-import com.hka.verteiltesysteme.database.User;
+import com.hka.verteiltesysteme.models.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public interface UserRepo extends JpaRepository<User, Integer> {}
+public interface CategoryRepo extends JpaRepository<Category, Integer> {
+}
