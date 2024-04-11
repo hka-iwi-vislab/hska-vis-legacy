@@ -1,0 +1,7 @@
+### Send POST request with json body
+POST http://localhost:8081/category
+Content-Type: application/json
+
+{
+  "name": "random-stuff"
+}
