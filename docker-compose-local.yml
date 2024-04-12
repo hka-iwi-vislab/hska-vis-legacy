@@ -29,7 +29,9 @@ services:
         aliases:
           - web-shop-db-image
   usermanagement:
-    image: docker.io/library/usermanagement:0.0.1-SNAPSHOT
+    build:
+      context: ./usermanagement
+      dockerfile: Dockerfile
     depends_on:
       - web-shop-db-image
     ports:
@@ -40,7 +42,9 @@ services:
           - usermanagement
 
   productmanagement:
-    image: docker.io/library/productmanagent:0.0.1-SNAPSHOT
+    build:
+      context: ./productmanagement
+      dockerfile: Dockerfile
     depends_on:
       - web-shop-db-image
     ports:
