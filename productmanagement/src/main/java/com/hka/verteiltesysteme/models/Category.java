@@ -28,6 +28,7 @@ public class Category implements java.io.Serializable {
 
     @Column(name = "products")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @Builder.Default
     private Set<Product> products = new HashSet<>(0);
 }
 

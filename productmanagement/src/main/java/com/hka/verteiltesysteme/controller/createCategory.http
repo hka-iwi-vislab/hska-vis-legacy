@@ -3,5 +3,5 @@ POST http://localhost:8081/category
 Content-Type: application/json
 
 {
-  "name": "random-stuff"
+  "name": "random stuff"
 }

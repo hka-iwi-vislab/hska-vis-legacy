@@ -1,24 +1,28 @@
 package com.hka.verteiltesysteme.controller;
 
 import com.hka.verteiltesysteme.dto.CreateProductDto;
+import com.hka.verteiltesysteme.models.Category;
 import com.hka.verteiltesysteme.models.Product;
+import com.hka.verteiltesysteme.repositories.CategoryRepo;
 import com.hka.verteiltesysteme.repositories.ProductRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductRepo productRepo;
+    private final CategoryRepo categoryRepo;
 
     @PostMapping("/product")
-    public ResponseEntity<String> CreateProduct(CreateProductDto createProductDto) {
+    public ResponseEntity<String> CreateProduct(@RequestBody CreateProductDto createProductDto) {
         try {
-            var product = Product.builder().name(createProductDto.name()).build();
+            Category category = categoryRepo.getById((int) createProductDto.categoryId());
+            var product = Product.builder().name(createProductDto.name())
+                    .category(category)
+                    .price(createProductDto.price())
+                    .details(createProductDto.description()).build();
             productRepo.save(product);
             return ResponseEntity.status(201).build();
         } catch (Exception e) {
