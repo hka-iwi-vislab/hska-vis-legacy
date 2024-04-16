@@ -5,6 +5,10 @@
 This project is the quick setup of the legacy webshop of 
 the masters course 'Distributed Information Systems' at the University of Applied Sciences (Karlsruhe).
 
+## Obtain Docker Images
+
+To generate the local docker images run mvn spring-boot:build-image-no-fork for each microservice.
+
 ## Table of Contents
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)

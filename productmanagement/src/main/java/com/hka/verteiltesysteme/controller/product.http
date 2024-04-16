@@ -1,0 +1,27 @@
+### Send POST request with json body
+POST http://localhost:8081/product
+Content-Type: application/json
+
+{
+  "name": "someh2ting",
+  "categoryId": 2,
+  "description": "fuck off",
+  "price": 13.5
+}
+
+### Send PUT request with json body
+PUT http://localhost:8081/product/2
+Content-Type: application/json
+
+{
+  "name": "new Name",
+  "categoryId": 3,
+  "description": "no",
+  "price": 1
+}
+
+### Send GET
+GET http://localhost:8081/product/2
+
+### Send GET
+GET http://localhost:8081/products

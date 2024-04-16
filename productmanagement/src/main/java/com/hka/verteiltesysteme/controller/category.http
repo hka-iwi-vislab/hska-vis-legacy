@@ -1,0 +1,24 @@
+### Send POST request with json body
+POST http://localhost:8081/category
+Content-Type: application/json
+
+{
+  "name": "random stuff"
+}
+
+### Send PUT request
+PUT http://localhost:8081/category/2
+Content-Type: application/json
+
+{
+  "name": "new Name"
+}
+
+### Send GET request
+GET http://localhost:8081/category/1
+
+### Send GET request
+GET http://localhost:8081/categories
+
+### Send PUT request with json body
+

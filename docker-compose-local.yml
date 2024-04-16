@@ -8,8 +8,8 @@ services:
       - "8888:8080"
     networks:
       local_dev_net:
-          aliases:
-              - legacywebshop
+        aliases:
+          - legacywebshop
 
   web-shop-db-image:
     build:
@@ -25,9 +25,34 @@ services:
     ports:
       - "3306:3306"
     networks:
-        local_dev_net:
-            aliases:
-                - web-shop-db-image
+      local_dev_net:
+        aliases:
+          - web-shop-db-image
+  usermanagement:
+    build:
+      context: ./usermanagement
+      dockerfile: Dockerfile
+    depends_on:
+      - web-shop-db-image
+    ports:
+      - "8080:8080"
+    networks:
+      local_dev_net:
+        aliases:
+          - usermanagement
+
+  productmanagement:
+    build:
+      context: ./productmanagement
+      dockerfile: Dockerfile
+    depends_on:
+      - web-shop-db-image
+    ports:
+      - "8081:8081"
+    networks:
+      local_dev_net:
+        aliases:
+          - productmanagement
 
 networks:
   local_dev_net:
