@@ -1,13 +1,13 @@
 ### Send POST request with json body
-POST http://localhost:8081/category
+POST http://localhost:8082/category
 Content-Type: application/json
 
 {
-  "name": "random stuff"
+  "name": "random stuff2"
 }
 
 ### Send PUT request
-PUT http://localhost:8081/category/2
+PUT http://localhost:8082/category/2
 Content-Type: application/json
 
 {
@@ -15,10 +15,10 @@ Content-Type: application/json
 }
 
 ### Send GET request
-GET http://localhost:8081/category/1
+GET http://localhost:8082/category/1
 
 ### Send GET request
-GET http://localhost:8081/categories
+GET http://localhost:8082/categories
 
 ### Send PUT request with json body
 

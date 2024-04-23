@@ -18,7 +18,7 @@ public class ProductController {
     @PostMapping("/product")
     public ResponseEntity<String> CreateProduct(@RequestBody UpsertProductDto createProductDto) {
         try {
-            Category category = categoryRepo.getById((int) createProductDto.categoryId());
+            Category category = categoryRepo.getById(createProductDto.categoryId());
             var product = Product.builder().name(createProductDto.name())
                     .category(category)
                     .price(createProductDto.price())

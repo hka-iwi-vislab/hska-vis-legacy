@@ -24,6 +24,7 @@ public class CategoryController {
         }
     }
 
+    //TODO propagate changes to other microservice
     @PutMapping("/category/{id}")
     public ResponseEntity<String> UpdateCategory(@PathVariable int id, @RequestBody UpsertCategoryDto createCategoryDto) {
         try {
@@ -39,7 +40,7 @@ public class CategoryController {
             return ResponseEntity.badRequest().body("Category could not be created");
         }
     }
-
+    //TODO propagate changes to other microservice
     @DeleteMapping("/category/{id}")
     public ResponseEntity<String> DeleteCategory(@PathVariable int id) {
         try {

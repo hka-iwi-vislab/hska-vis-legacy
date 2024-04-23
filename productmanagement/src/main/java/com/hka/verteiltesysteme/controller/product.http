@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "name": "someh2ting",
-  "categoryId": 2,
+  "categoryId": 1,
   "description": "fuck off",
   "price": 13.5
 }
