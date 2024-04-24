@@ -7,11 +7,13 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @AllArgsConstructor
 @Builder
 @Data
+@NoArgsConstructor
 public class CategoryDto {
 
     private int id;

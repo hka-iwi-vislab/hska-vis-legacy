@@ -1,25 +1,27 @@
 package com.hka.verteiltesysteme.repositories;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hka.verteiltesysteme.config.CategoryConfiguration;
 import com.hka.verteiltesysteme.dto.CategoryDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryRepo {
+
+    private final CategoryConfiguration categoryConfiguration;
+
     public CategoryDto getById(int id) throws IOException, URISyntaxException {
-        HttpRequest request = HttpRequest.newBuilder(new URI("http://categorymanagement:8082/category/%d".formatted(id))).GET().build();
+        HttpRequest request = HttpRequest.newBuilder(new URI("http://" + categoryConfiguration.getDomain() + ":8082/category/%d".formatted(id))).GET().build();
 
         CategoryDto categoryDto = null;
 
