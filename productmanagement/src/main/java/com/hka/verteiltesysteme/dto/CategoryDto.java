@@ -14,11 +14,7 @@ import lombok.Data;
 @Data
 public class CategoryDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "name", nullable = false)
     private String name;
 }
