@@ -21,7 +21,7 @@ public class CategoryRepo {
     private final CategoryConfiguration categoryConfiguration;
 
     public CategoryDto getById(int id) throws IOException, URISyntaxException {
-        HttpRequest request = HttpRequest.newBuilder(new URI("http://" + categoryConfiguration.getDomain() + ":8082/category/%d".formatted(id))).GET().build();
+        HttpRequest request = HttpRequest.newBuilder(new URI("http://%s:8082/category/%d".formatted(categoryConfiguration.getDomain(),id))).GET().build();
 
         CategoryDto categoryDto = null;
 

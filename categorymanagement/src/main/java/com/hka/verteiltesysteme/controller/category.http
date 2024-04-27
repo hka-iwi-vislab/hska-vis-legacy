@@ -20,5 +20,7 @@ GET http://localhost:8082/category/1
 ### Send GET request
 GET http://localhost:8082/categories
 
-### Send PUT request with json body
+### Send DELETE request with json body
+
+DELETE http://localhost:8082/category/1
 
