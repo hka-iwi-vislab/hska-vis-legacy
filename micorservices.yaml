@@ -1,0 +1,291 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  db-user: "root"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-secret
+data:
+  root-password: VmVydGVpbHRlc3lzdGVtZVN1Y2tzMDgxNT8/DQo=
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: user
+  name: user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: user
+  strategy: { }
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: user
+    spec:
+      containers:
+        - image: maxilambda/user:latest
+          imagePullPolicy: IfNotPresent
+          name: user
+          ports:
+            - containerPort: 8080
+          resources: { }
+          env:
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: db-user
+                  name: db-config
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: root-password
+                  name: db-secret
+
+status: { }
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: product
+  name: product
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: product
+  strategy: { }
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: product
+    spec:
+      containers:
+        - image: maxilambda/product:latest
+          imagePullPolicy: IfNotPresent
+          name: product
+          ports:
+            - containerPort: 8081
+          resources: { }
+          env:
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: db-user
+                  name: db-config
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: root-password
+                  name: db-secret
+status: { }
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: category
+  name: category
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: category
+  strategy: { }
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: category
+    spec:
+      containers:
+        - image: maxilambda/category:latest
+          imagePullPolicy: IfNotPresent
+          name: category
+          ports:
+            - containerPort: 8082
+          resources: { }
+          env:
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: db-user
+                  name: db-config
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: root-password
+                  name: db-secret
+status: { }
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverse-proxy
+spec:
+  selector:
+    matchLabels:
+      app: reverse-proxy
+  template:
+    metadata:
+      labels:
+        app: reverse-proxy
+    spec:
+      containers:
+        - name: reverse-proxy
+          image: maxilambda/nginx:latest
+          ports:
+            - containerPort: 666
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: user
+  name: user
+spec:
+  ports:
+    - name: "8080"
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: user
+status:
+  loadBalancer: { }
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: product
+  name: product
+spec:
+  ports:
+    - name: "8081"
+      protocol: TCP
+      port: 8081
+      targetPort: 8081
+  selector:
+    app: product
+status:
+  loadBalancer: { }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: category
+  name: category
+spec:
+  ports:
+    - name: "8082"
+      protocol: TCP
+      port: 8082
+      targetPort: 8082
+  selector:
+    app: category
+status:
+  loadBalancer: { }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: web-shop-db-image
+  name: web-shop-db-image
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: web-shop-db-image
+  strategy: { }
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: web-shop-db-image
+    spec:
+      containers:
+        - image: maxilambda/database:latest
+          imagePullPolicy: IfNotPresent
+          name: web-shop-db-image
+          ports:
+            - containerPort: 3306
+          resources: { }
+          env:
+            - name: MYSQL_DATABASE
+              value: webshop
+            - name: MYSQL_USER
+              value: webshopuser
+            - name: MYSQL_PASSWORD
+              value: 240b2c6d58ff2ce2f508b49f
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: root-password
+                  name: db-secret
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+status: { }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: web-shop-db-image
+  name: web-shop-db-image
+spec:
+  ports:
+    - name: "3306"
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
+  selector:
+    app: web-shop-db-image
+status:
+  loadBalancer: { }
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+  labels:
+    app: web-shop-db-image
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

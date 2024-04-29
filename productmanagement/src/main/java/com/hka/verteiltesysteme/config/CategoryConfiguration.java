@@ -10,5 +10,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoryConfiguration {
-    private String domain = "categorymanagement";
+    private String domain;
 }
