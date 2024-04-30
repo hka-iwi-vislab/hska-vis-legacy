@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: category
+  name: category
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: category
+  strategy: { }
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: category
+    spec:
+      containers:
+        - image: maxilambda/category:latest
+          imagePullPolicy: IfNotPresent
+          name: category
+          env:
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: root-user
+                  name: db-config
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: db-root-password
+                  name: db-secret
+          ports:
+            - containerPort: 8082
+          resources: { }
+      restartPolicy: Always
+status: { }
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: category
+  name: category
+spec:
+  ports:
+    - name: "8082"
+      protocol: TCP
+      port: 8082
+      targetPort: 8082
+  selector:
+    app: category
+status:
+  loadBalancer: { }

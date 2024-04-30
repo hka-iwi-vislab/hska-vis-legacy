@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: web-shop-db-image
+  name: web-shop-db-image
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-shop-db-image
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: web-shop-db-image
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: db-password
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: db-root-password
+            - name: MYSQL_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: db-user
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: default-database
+          image: maxilambda/database
+          imagePullPolicy: IfNotPresent
+          name: web-shop-db-image
+          ports:
+            - containerPort: 3306
+          resources: { }
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysql-persistent-volume-claim
+      restartPolicy: Always
+      volumes:
+        - name: mysql-persistent-volume-claim
+          persistentVolumeClaim:
+            claimName: mysql-persistent-volume-claim
+status: { }
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mysql-persistent-volume-claim
+  name: mysql-persistent-volume-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: { }
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: web-shop-db-image
+  name: web-shop-db-image
+spec:
+  ports:
+    - name: "3306"
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
+  selector:
+    app: web-shop-db-image
+status:
+  loadBalancer: { }
