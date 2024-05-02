@@ -15,4 +15,4 @@ spec:
         - name: reverse-proxy
           image: maxilambda/nginx:latest
           ports:
-            - containerPort: 666
+            - containerPort: 5666
