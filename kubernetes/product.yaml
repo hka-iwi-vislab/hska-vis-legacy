@@ -16,6 +16,8 @@ spec:
       creationTimestamp: null
       labels:
         app: product
+      name:
+        product
     spec:
       containers:
         - image: maxilambda/product

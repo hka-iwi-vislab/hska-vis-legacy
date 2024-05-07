@@ -6,13 +6,15 @@ metadata:
     app: category
   name: category
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: category
   strategy: { }
   template:
     metadata:
+      name:
+        category
       creationTimestamp: null
       labels:
         app: category

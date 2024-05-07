@@ -16,6 +16,8 @@ spec:
       creationTimestamp: null
       labels:
         app: user
+      name:
+        user
     spec:
       containers:
         - image: maxilambda/user

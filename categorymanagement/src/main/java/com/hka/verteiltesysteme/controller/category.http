@@ -24,3 +24,10 @@ GET http://localhost:8082/categories
 
 DELETE http://localhost:8082/category/1
 
+### Send POST request with json body
+GET http://localhost:5000/categorycategories
+Content-Type: application/json
+
+{
+  "name": "random stuff2"
+}
