@@ -57,7 +57,7 @@ Copyright (c) 2017-2018 Manuel Vogel
 Source code is open source and released under the MIT license.
 
 ## Setup Istio
-
+* install kubernetes and kubectl
 * install istioctl
   * downlad istio from https://github.com/istio/istio/releases/tag/1.22.0
   * add executable to path 
