@@ -24,8 +24,17 @@ GET http://localhost:8082/categories
 
 DELETE http://localhost:8082/category/1
 
-### Send POST request with json body
-GET http://localhost:5000/categorycategories
+### Create Gategory with loadbalancer
+
+POST http://localhost:5000/category/category
+Content-Type: application/json
+
+{
+  "name": "new Name"
+}
+
+### Send GET to loadbalancer
+GET http://localhost:5000/category/categories
 Content-Type: application/json
 
 {
