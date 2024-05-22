@@ -5,3 +5,6 @@ kubectl apply -f .\kubernetes\category.yaml
 kubectl apply -f .\kubernetes\product.yaml
 kubectl apply -f .\kubernetes\user.yaml
 kubectl apply -f .\kubernetes\reverse-proxy.yaml
+kubectl apply -f .\kubernetes\grafana.yaml
+kubectl apply -f .\kubernetes\kiali.yaml
+kubectl apply -f .\kubernetes\prometheus.yaml

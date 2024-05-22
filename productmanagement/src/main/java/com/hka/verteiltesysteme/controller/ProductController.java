@@ -26,7 +26,9 @@ public class ProductController {
             productRepo.save(product);
             return ResponseEntity.status(201).build();
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Category could not be created");
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Product could not be created");
         }
     }
 
