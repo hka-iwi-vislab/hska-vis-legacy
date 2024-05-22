@@ -1,7 +1,7 @@
 package com.hka.verteiltesysteme.controller;
 
+import com.hka.verteiltesysteme.dto.CategoryDto;
 import com.hka.verteiltesysteme.dto.UpsertProductDto;
-import com.hka.verteiltesysteme.models.Category;
 import com.hka.verteiltesysteme.models.Product;
 import com.hka.verteiltesysteme.repositories.CategoryRepo;
 import com.hka.verteiltesysteme.repositories.ProductRepo;
@@ -18,15 +18,17 @@ public class ProductController {
     @PostMapping("/product")
     public ResponseEntity<String> CreateProduct(@RequestBody UpsertProductDto createProductDto) {
         try {
-            Category category = categoryRepo.getById((int) createProductDto.categoryId());
+            CategoryDto category = categoryRepo.getById(createProductDto.categoryId());
             var product = Product.builder().name(createProductDto.name())
-                    .category(category)
+                    .category(category.getId())
                     .price(createProductDto.price())
                     .details(createProductDto.description()).build();
             productRepo.save(product);
             return ResponseEntity.status(201).build();
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Category could not be created");
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Product could not be created");
         }
     }
 
@@ -44,7 +46,7 @@ public class ProductController {
             if (category == null) {
                 return ResponseEntity.badRequest().body("Category not found");
             }
-            product.setCategory(category);
+            product.setCategory(category.getId());
             productRepo.save(product);
             return ResponseEntity.status(201).build();
         } catch (Exception e) {

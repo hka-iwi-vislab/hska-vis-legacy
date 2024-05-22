@@ -26,11 +26,5 @@ public class Category implements java.io.Serializable {
 
     @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "products")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-    @Builder.Default
-    @JsonIgnore
-    private Set<Product> products = new HashSet<>(0);
 }
 

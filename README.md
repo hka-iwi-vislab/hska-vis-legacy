@@ -55,3 +55,17 @@ Details can be found [here](https://github.com/docker-library/mysql/issues/51)
 ## <a name="license"></a>License
 Copyright (c) 2017-2018 Manuel Vogel
 Source code is open source and released under the MIT license.
+
+## Setup Istio
+
+* install istioctl
+  * downlad istio from https://github.com/istio/istio/releases/tag/1.22.0
+  * add executable to path 
+  * open shell and execute istioctl install
+
+* run apply-config.cmd
+* default namespace
+  * expose the nginx (reverse-proxy)
+* istio namespace
+  * expose prometheus
+  * expose kiali

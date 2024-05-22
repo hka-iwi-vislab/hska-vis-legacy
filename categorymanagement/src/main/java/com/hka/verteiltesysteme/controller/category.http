@@ -1,0 +1,35 @@
+### Send GET to loadbalancer
+GET http://localhost:5000/category/categories
+Content-Type: application/json
+
+{
+  "name": "random stuff2"
+}
+
+### Stuiff
+
+POST http://localhost:5000/product/product
+Content-Type: application/json
+
+{
+  "name": "{{$random.uuid}}",
+  "description": "eine maus, insane",
+  "price": 1111.0,
+  "categoryId": 2
+}
+### Create Gategory with loadbalancer
+
+POST http://localhost:5000/category/category
+Content-Type: application/json
+
+{
+  "name": "{{$random.uuid}}"
+}
+
+### Send GET to loadbalancer
+GET http://localhost:5000/category/categories
+Content-Type: application/json
+
+{
+  "name": "random stuff2"
+}

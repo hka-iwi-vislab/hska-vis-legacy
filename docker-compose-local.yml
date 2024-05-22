@@ -47,12 +47,26 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - web-shop-db-image
+      - categorymanagement
     ports:
       - "8081:8081"
     networks:
       local_dev_net:
         aliases:
           - productmanagement
+
+  categorymanagement:
+    build:
+      context: ./categorymanagement
+      dockerfile: Dockerfile
+    depends_on:
+      - web-shop-db-image
+    ports:
+      - "8082:8082"
+    networks:
+      local_dev_net:
+        aliases:
+          - categorymanagement
 
 networks:
   local_dev_net:

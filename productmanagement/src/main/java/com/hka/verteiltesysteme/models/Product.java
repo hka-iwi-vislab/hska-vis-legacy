@@ -31,7 +31,6 @@ public class Product implements java.io.Serializable {
     @Column(name = "details")
     private String details;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @Column(name = "category_id")
+    private int category;
 }
