@@ -7,6 +7,8 @@ import hska.iwi.eShopMaster.model.database.dataobjects.User;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.io.IOException;
+
 /**
  * @author knad0001
  */
@@ -14,12 +16,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserManagerImpl implements UserManager {
     private final HttpDao httpDao = new HttpDao("http://user.default.svc.cluster.local:8084");
+//    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/user");
 
     public void registerUser(String username, String name, String lastname, String password, Role role) {
         User user = new User(username, name, lastname, password, role);
 
         try {
-            httpDao.post("/user/register", new Gson().toJson(user), User.class);
+            httpDao.post("/user/register", new Gson().toJson(user), Object.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -30,9 +33,11 @@ public class UserManagerImpl implements UserManager {
         if (username == null || username.isEmpty()) {
             return null;
         }
+
         try {
             return httpDao.post("/user/findByUsername", new Gson().toJson(new Username(username)), User.class);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
