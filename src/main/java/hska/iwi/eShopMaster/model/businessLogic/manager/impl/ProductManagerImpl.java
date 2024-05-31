@@ -1,15 +1,19 @@
 package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
 import com.google.gson.Gson;
+import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
+import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 import hska.iwi.eShopMaster.model.database.dataobjects.Product;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class ProductManagerImpl implements ProductManager {
+//    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/product");
     private final HttpDao httpDao = new HttpDao("http://product.default.svc.cluster.local:8081");
 
     @Override
@@ -32,7 +36,7 @@ public class ProductManagerImpl implements ProductManager {
 
     @Override
     public Product getProductByName(String name) {
-        return null;
+        return getProducts().stream().filter(p -> p.getName().equals(name)).findFirst().orElseGet(null);
     }
 
 
@@ -49,12 +53,13 @@ public class ProductManagerImpl implements ProductManager {
 
     @Override
     public List<Product> getProductsForSearchValues(String searchValue, Double searchMinPrice, Double searchMaxPrice) {
-        return null;
+        return getProducts().stream().filter(p -> p.getName().contains(searchValue)).filter(p -> p.getPrice() >= searchMinPrice).filter(p -> p.getPrice() <= searchMaxPrice).collect(Collectors.toList());
     }
 
     @Override
     public boolean deleteProductsByCategoryId(int categoryId) {
-        return false;
+        getProducts().stream().filter(p -> p.getCategory().getId() == categoryId).map(Product::getId).forEach(this::deleteProductById);
+        return true;
     }
 
     @Override

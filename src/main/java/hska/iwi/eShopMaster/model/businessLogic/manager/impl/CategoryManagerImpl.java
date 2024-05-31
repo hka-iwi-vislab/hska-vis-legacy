@@ -11,6 +11,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class CategoryManagerImpl implements CategoryManager {
+//    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/category");
     private final HttpDao httpDao = new HttpDao("http://category.default.svc.cluster.local:8082");
 
     public List<Category> getCategories() {
@@ -36,7 +37,7 @@ public class CategoryManagerImpl implements CategoryManager {
 
     public void addCategory(String name) {
         try {
-            httpDao.post("/category", new Gson().toJson(new AddCategory(name)), Category.class);
+            httpDao.post("/category", new Gson().toJson(new AddCategory(name)), Object.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -44,7 +45,7 @@ public class CategoryManagerImpl implements CategoryManager {
 
     public void delCategory(Category cat) {
         try {
-            httpDao.delete("/category/" + cat.getId(), Category.class);
+            httpDao.delete("/category/" + cat.getId(), Object.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -52,7 +53,7 @@ public class CategoryManagerImpl implements CategoryManager {
 
     public void delCategoryById(int id) {
         try {
-            httpDao.delete("/category/" + id, Category.class);
+            httpDao.delete("/category/" + id, Object.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
