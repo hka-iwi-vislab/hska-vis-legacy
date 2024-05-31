@@ -8,6 +8,7 @@ spec:
       app: reverse-proxy
   template:
     metadata:
+      name: reverse-proxy
       labels:
         app: reverse-proxy
     spec:

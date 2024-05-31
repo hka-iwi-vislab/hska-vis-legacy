@@ -14,7 +14,7 @@ import java.util.List;
 public class HttpDao {
     private final String url;
 
-    public <T> T post(String path, String requestBody) throws URISyntaxException, IOException {
+    public <T> T post(String path, String requestBody, Class<T> clazz) throws URISyntaxException, IOException {
         String uri = url + path;
 
         OkHttpClient client = new OkHttpClient();
@@ -24,25 +24,25 @@ public class HttpDao {
                 .post(body)
                 .build();
 
-        return send(client, request);
+        return send(client, request, clazz);
     }
 
-    public <T> T get(String path) throws URISyntaxException, IOException {
+    public <T> T get(String path, Class<T> clazz) throws URISyntaxException, IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(this.url + path)
                 .get()
                 .build();
-        return send(client, request);
+        return send(client, request, clazz);
     }
 
-    public <T> T delete(String path) throws URISyntaxException, IOException {
+    public <T> T delete(String path, Class<T> clazz) throws URISyntaxException, IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(this.url + path)
                 .delete()
                 .build();
-        return send(client, request);
+        return send(client, request, clazz);
     }
 
     public <T> List<T> getList(String path) throws URISyntaxException, IOException {
@@ -54,13 +54,16 @@ public class HttpDao {
         return sendList(client, request);
     }
 
-    private <T> T send(OkHttpClient client, Request request) throws IOException {
+    private <T> T send(OkHttpClient client, Request request, Class<T> clazz) throws IOException {
         Response response = client.newCall(request).execute();
         if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
         Type type = new TypeToken<T>() {
         }.getType();
-        return new Gson().fromJson(response.body().toString(), type);
+        String s = response.body().string();
+        System.out.println(s);
+        System.out.println(response.body());
+        return new Gson().fromJson(s, clazz);
     }
 
     private <T> List<T> sendList(OkHttpClient client, Request request) throws IOException {
@@ -69,6 +72,9 @@ public class HttpDao {
 
         Type type = new TypeToken<List<T>>() {
         }.getType();
-        return new Gson().fromJson(response.body().toString(), type);
+        String s = response.body().string();
+        System.out.println(s);
+        System.out.println(response.body());
+        return new Gson().fromJson(s, type);
     }
 }

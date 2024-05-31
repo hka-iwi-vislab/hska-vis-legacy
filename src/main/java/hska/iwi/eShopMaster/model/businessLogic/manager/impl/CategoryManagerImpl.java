@@ -11,7 +11,8 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class CategoryManagerImpl implements CategoryManager {
-    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/category");
+    private final HttpDao httpDao = new HttpDao("http://category:8082");
+//    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/category");
 
     public List<Category> getCategories() {
         try {
@@ -23,7 +24,7 @@ public class CategoryManagerImpl implements CategoryManager {
 
     public Category getCategory(int id) {
         try {
-            return httpDao.get("/category" + id);
+            return httpDao.get("/category" + id, Category.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -36,7 +37,7 @@ public class CategoryManagerImpl implements CategoryManager {
 
     public void addCategory(String name) {
         try {
-            httpDao.post("/category", new Gson().toJson(new AddCategory(name)));
+            httpDao.post("/category", new Gson().toJson(new AddCategory(name)), Category.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -44,7 +45,7 @@ public class CategoryManagerImpl implements CategoryManager {
 
     public void delCategory(Category cat) {
         try {
-            httpDao.delete("/category/" + cat.getId());
+            httpDao.delete("/category/" + cat.getId(), Category.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -52,7 +53,7 @@ public class CategoryManagerImpl implements CategoryManager {
 
     public void delCategoryById(int id) {
         try {
-            httpDao.delete("/category/" + id);
+            httpDao.delete("/category/" + id, Category.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

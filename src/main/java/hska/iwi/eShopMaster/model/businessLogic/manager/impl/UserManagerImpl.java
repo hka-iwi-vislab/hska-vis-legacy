@@ -12,13 +12,13 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class UserManagerImpl implements UserManager {
-    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/user");
+    private final HttpDao httpDao = new HttpDao("http://user:8084");
 
     public void registerUser(String username, String name, String lastname, String password, Role role) {
         User user = new User(username, name, lastname, password, role);
 
         try {
-            httpDao.post("/user/register", new Gson().toJson(user));
+            httpDao.post("/user/register", new Gson().toJson(user), User.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -30,7 +30,7 @@ public class UserManagerImpl implements UserManager {
             return null;
         }
         try {
-            return httpDao.post("/user/findByUsername", new Gson().toJson(username));
+            return httpDao.post("/user/findByUsername", new Gson().toJson(username), User.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +38,7 @@ public class UserManagerImpl implements UserManager {
 
     public boolean deleteUserById(int id) {
         try {
-            httpDao.delete("/user/" + id);
+            httpDao.delete("/user/" + id, Object.class);
             return true;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -47,7 +47,7 @@ public class UserManagerImpl implements UserManager {
 
     public Role getRoleByLevel(int level) {
         try {
-            return httpDao.get("/role/" + level);
+            return httpDao.get("/role/" + level, User.class).getRole();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

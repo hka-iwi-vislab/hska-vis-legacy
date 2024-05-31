@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - image: maxilambda/category:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: category
           env:
             - name: DB_USER

@@ -15,9 +15,16 @@ POST http://localhost:5000/user/user/register
 Content-Type: application/json
 
 {
-  "username": "bames_jond22222",
+  "username": "bames_jond2222w2",
   "firstname": "james",
   "lastname": "bond",
   "password1": "007",
   "password2": "007"
+}
+### sd
+POST http://localhost:8084/findByUsername
+Content-Type: application/json
+
+{
+  "username": "bames_jond2222w2"
 }

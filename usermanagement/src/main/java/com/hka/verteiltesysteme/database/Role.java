@@ -36,6 +36,6 @@ public class Role implements java.io.Serializable {
     private String typ;
 
     @Column(name = "level1")
-    private int level;
+    private int level1;
 
 }

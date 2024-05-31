@@ -1,12 +1,12 @@
 set DOCKER_ACCOUNT=maxilambda
 
-docker build -t webshop -f Dockerfile .
-docker tag webshop %DOCKER_ACCOUNT%/webshop:latest
-docker push %DOCKER_ACCOUNT%/webshop
+docker build -t webshop2 -f Dockerfile .
+docker tag webshop2 %DOCKER_ACCOUNT%/webshop2:latest
+docker push %DOCKER_ACCOUNT%/webshop2
 
-docker build -t database -f DockerfileMySQL .
-docker tag database %DOCKER_ACCOUNT%/database:latest
-docker push %DOCKER_ACCOUNT%/database
+@REM docker build -t database -f DockerfileMySQL .
+@REM docker tag database %DOCKER_ACCOUNT%/database:latest
+@REM docker push %DOCKER_ACCOUNT%/database
 
 docker build -t user -f usermanagement\Dockerfile usermanagement
 docker tag user %DOCKER_ACCOUNT%/user:latest

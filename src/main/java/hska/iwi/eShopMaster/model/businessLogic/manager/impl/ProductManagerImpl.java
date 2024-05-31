@@ -12,8 +12,8 @@ import java.util.List;
 public class ProductManagerImpl implements ProductManager {
 
 
-//    private final HttpDao httpDao = new HttpDao("http://product:8081");
-    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/product");
+    private final HttpDao httpDao = new HttpDao("http://product:8081");
+//    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/product");
 
 
     @Override
@@ -28,7 +28,7 @@ public class ProductManagerImpl implements ProductManager {
     @Override
     public Product getProductById(int id) {
         try {
-            return httpDao.get("/product/" + id);
+            return httpDao.get("/product/" + id, Product.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -43,7 +43,7 @@ public class ProductManagerImpl implements ProductManager {
     @Override
     public int addProduct(String name, double price, int categoryId, String details) {
         try {
-            return httpDao.post("/product", new Gson().toJson(new UpsertProduct(details, name, price, categoryId)));
+            return httpDao.post("/product", new Gson().toJson(new UpsertProduct(details, name, price, categoryId)), Product.class).getId();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -63,7 +63,7 @@ public class ProductManagerImpl implements ProductManager {
     @Override
     public void deleteProductById(int id) {
         try {
-            httpDao.delete("/product/" + id);
+            httpDao.delete("/product/" + id, Object.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
