@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 
@@ -23,19 +22,19 @@ public class UserController {
     private final RoleRepo roleRepo;
 
     @GetMapping("/roles/all")
-    public List<Role> getAllRoles(){
-        if(!roleRepo.existsById(2)) roleRepo.save(new Role(2,"admin", 0));
-        if(!roleRepo.existsById(1)) roleRepo.save(new Role(1,"user", 1));
+    public List<Role> getAllRoles() {
+        if (!roleRepo.existsById(2)) roleRepo.save(new Role(2, "admin", 0));
+        if (!roleRepo.existsById(1)) roleRepo.save(new Role(1, "user", 1));
 
         return roleRepo.findAll();
     }
 
     @PostMapping("user/register")
     public ResponseEntity<String> registerUser(@RequestBody @Validated UserDto user) {
-        if(!roleRepo.existsById(2)) roleRepo.save(new Role(2,"admin", 0));
-        if(!roleRepo.existsById(1)) roleRepo.save(new Role(1,"user", 1));
+        if (!roleRepo.existsById(2)) roleRepo.save(new Role(2, "admin", 0));
+        if (!roleRepo.existsById(1)) roleRepo.save(new Role(1, "user", 1));
 
-        Role role = roleRepo.findByLevel1(1);
+        Role role = roleRepo.findByLevel(1);
         var newUser = userRepo.save(User.builder()
                 .role(role)
                 .firstname(user.firstname())
@@ -56,18 +55,25 @@ public class UserController {
 
     @PostMapping("/user/findByUsername")
     public ResponseEntity<User> findByUsername(@RequestBody FindUsername request) {
-        Optional<User> user = userRepo.findByUsername(request.username());
+        if (userRepo.findByUsername("admin").isEmpty()) {
+            var role = roleRepo.findByLevel(0);
+            userRepo.save(new User(9999, "admin", "admin", "admin", "admin", role));
+            System.out.println("created admin");
+        } else {
+            System.out.println("admin already exists");
+        }
 
+        Optional<User> user = userRepo.findByUsername(request.username());
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 
     @GetMapping("/role/{level}")
     public ResponseEntity<Role> getRoleByLevel(@PathVariable int level) {
-        if(!roleRepo.existsById(2)) roleRepo.save(new Role(2,"admin", 0));
-        if(!roleRepo.existsById(1)) roleRepo.save(new Role(1,"user", 1));
+        if (!roleRepo.existsById(2)) roleRepo.save(new Role(2, "admin", 0));
+        if (!roleRepo.existsById(1)) roleRepo.save(new Role(1, "user", 1));
 
-        Role role = roleRepo.findByLevel1(level);
+        Role role = roleRepo.findByLevel(level);
         return ResponseEntity.ok(role);
     }
 

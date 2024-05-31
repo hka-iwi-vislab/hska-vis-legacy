@@ -3,26 +3,25 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: webshop2
-  name: webshop2
+    app: webshop
+  name: webshop
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webshop2
+      app: webshop
   strategy: { }
   template:
     metadata:
       name:
-        webshop2
+        webshop
       creationTimestamp: null
       labels:
-        app: webshop2
+        app: webshop
     spec:
       containers:
-        - image: maxilambda/webshop2:latest
-          imagePullPolicy: Always
-          name: webshop2
+        - image: nightdeath/webshop:latest
+          name: webshop
           ports:
             - containerPort: 8080
           resources: { }
@@ -36,8 +35,8 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: webshop2
-  name: webshop2
+    app: webshop
+  name: webshop
 spec:
   ports:
     - name: "8080"
@@ -45,6 +44,6 @@ spec:
       port: 8080
       targetPort: 8080
   selector:
-    app: webshop2
+    app: webshop
 status:
   loadBalancer: { }

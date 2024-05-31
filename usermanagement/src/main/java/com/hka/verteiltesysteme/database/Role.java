@@ -1,12 +1,7 @@
 package com.hka.verteiltesysteme.database;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +31,6 @@ public class Role implements java.io.Serializable {
     private String typ;
 
     @Column(name = "level1")
-    private int level1;
+    private int level;
 
 }

@@ -11,8 +11,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class CategoryManagerImpl implements CategoryManager {
-    private final HttpDao httpDao = new HttpDao("http://category:8082");
-//    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/category");
+    private final HttpDao httpDao = new HttpDao("http://category.default.svc.cluster.local:8082");
 
     public List<Category> getCategories() {
         try {

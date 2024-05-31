@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import hska.iwi.eShopMaster.model.businessLogic.manager.UserManager;
 import hska.iwi.eShopMaster.model.database.dataobjects.Role;
 import hska.iwi.eShopMaster.model.database.dataobjects.User;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -12,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class UserManagerImpl implements UserManager {
-    private final HttpDao httpDao = new HttpDao("http://user:8084");
+    private final HttpDao httpDao = new HttpDao("http://user.default.svc.cluster.local:8084");
 
     public void registerUser(String username, String name, String lastname, String password, Role role) {
         User user = new User(username, name, lastname, password, role);
@@ -30,7 +31,7 @@ public class UserManagerImpl implements UserManager {
             return null;
         }
         try {
-            return httpDao.post("/user/findByUsername", new Gson().toJson(username), User.class);
+            return httpDao.post("/user/findByUsername", new Gson().toJson(new Username(username)), User.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -62,6 +63,11 @@ public class UserManagerImpl implements UserManager {
         } else {
             return false;
         }
+    }
+
+    @Data
+    public class Username {
+        private final String username;
     }
 
 

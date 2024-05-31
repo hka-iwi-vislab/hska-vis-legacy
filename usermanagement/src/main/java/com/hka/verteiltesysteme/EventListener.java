@@ -18,11 +18,14 @@ public class EventListener implements ApplicationListener<ContextStartedEvent> {
 
     @Override
     public void onApplicationEvent(ContextStartedEvent event) {
-        if(!roleRepo.existsById(2)) roleRepo.save(new Role(2,"admin", 0));
-        if(!roleRepo.existsById(1)) roleRepo.save(new Role(1,"user", 1));
-        if(userRepo.findByUsername("admin").isEmpty()) {
-
-            userRepo.save(new User(9999, "admin", "admin", "admin", "admin", roleRepo.findByLevel1(0)));
+        if (!roleRepo.existsById(2)) roleRepo.save(new Role(2, "admin", 0));
+        if (!roleRepo.existsById(1)) roleRepo.save(new Role(1, "user", 1));
+        if (userRepo.findByUsername("admin").isEmpty()) {
+            var role = roleRepo.findByLevel(0);
+            userRepo.save(new User(9999, "admin", "admin", "admin", "admin", role));
+            System.out.println("created admin");
+        } else {
+            System.out.println("admin already exists");
         }
     }
 }

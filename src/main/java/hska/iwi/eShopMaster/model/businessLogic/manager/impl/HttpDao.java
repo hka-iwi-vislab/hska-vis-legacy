@@ -18,6 +18,9 @@ public class HttpDao {
         String uri = url + path;
 
         OkHttpClient client = new OkHttpClient();
+        System.out.println("Sending request to: " + uri);
+        System.out.println("Request: " + requestBody);
+
         RequestBody body = RequestBody.create(requestBody, MediaType.parse("application/json; charset=utf-8"));
         Request request = new Request.Builder()
                 .url(uri)
@@ -63,7 +66,10 @@ public class HttpDao {
         String s = response.body().string();
         System.out.println(s);
         System.out.println(response.body());
-        return new Gson().fromJson(s, clazz);
+        T result = new Gson().fromJson(s, clazz);
+
+        System.out.println(result);
+        return result;
     }
 
     private <T> List<T> sendList(OkHttpClient client, Request request) throws IOException {

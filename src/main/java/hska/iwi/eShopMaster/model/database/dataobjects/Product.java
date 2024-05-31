@@ -1,82 +1,88 @@
 package hska.iwi.eShopMaster.model.database.dataobjects;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * This class contains details about products.
  */
+@Getter
+@Setter
+@AllArgsConstructor
 public class Product implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	private int id;
+    private int id;
 
-	private String name;
+    private String name;
 
-	private double price;
+    private double price;
 
-	
-	private Category category;
 
-	private String details;
+    private Category category;
 
-	public Product() {
-	}
+    private String details;
 
-	public Product(String name, double price, Category category) {
-		this.name = name;
-		this.price = price;
-		this.category = category;
-	}
+    public Product() {
+    }
 
-	public Product(String name, double price, Category category, String details) {
-		this.name = name;
-		this.price = price;
-		this.category = category;
-		this.details = details;
-	}
+    public Product(String name, double price, Category category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
 
-	public int getId() {
-		return this.id;
-	}
+    public Product(String name, double price, Category category, String details) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.details = details;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return this.id;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public double getPrice() {
-		return this.price;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    public double getPrice() {
+        return this.price;
+    }
 
-	public Category getCategory() {
-		return this.category;
-	}
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+    public Category getCategory() {
+        return this.category;
+    }
 
-	public String getDetails() {
-		return this.details;
-	}
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
-	public void setDetails(String details) {
-		this.details = details;
-	}
+    public String getDetails() {
+        return this.details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
 
 }

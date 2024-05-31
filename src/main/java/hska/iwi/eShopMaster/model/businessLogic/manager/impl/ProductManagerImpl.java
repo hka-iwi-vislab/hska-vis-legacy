@@ -10,11 +10,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class ProductManagerImpl implements ProductManager {
-
-
-    private final HttpDao httpDao = new HttpDao("http://product:8081");
-//    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/product");
-
+    private final HttpDao httpDao = new HttpDao("http://product.default.svc.cluster.local:8081");
 
     @Override
     public List<Product> getProducts() {
@@ -43,7 +39,8 @@ public class ProductManagerImpl implements ProductManager {
     @Override
     public int addProduct(String name, double price, int categoryId, String details) {
         try {
-            return httpDao.post("/product", new Gson().toJson(new UpsertProduct(details, name, price, categoryId)), Product.class).getId();
+            httpDao.post("/product", new Gson().toJson(new UpsertProduct(details, name, price, categoryId)), Object.class);
+            return 1;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
