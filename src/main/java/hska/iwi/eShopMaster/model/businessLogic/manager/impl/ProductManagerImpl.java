@@ -1,9 +1,7 @@
 package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
 import com.google.gson.Gson;
-import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
-import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 import hska.iwi.eShopMaster.model.database.dataobjects.Product;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +51,11 @@ public class ProductManagerImpl implements ProductManager {
 
     @Override
     public List<Product> getProductsForSearchValues(String searchValue, Double searchMinPrice, Double searchMaxPrice) {
-        return getProducts().stream().filter(p -> p.getName().contains(searchValue)).filter(p -> p.getPrice() >= searchMinPrice).filter(p -> p.getPrice() <= searchMaxPrice).collect(Collectors.toList());
+        return getProducts().stream()
+                .filter(p -> searchValue == null || p.getName().contains(searchValue))
+                .filter(p -> searchMinPrice == null || p.getPrice() >= searchMinPrice)
+                .filter(p -> searchMaxPrice == null || p.getPrice() <= searchMaxPrice)
+                .collect(Collectors.toList());
     }
 
     @Override
