@@ -64,8 +64,8 @@ public class UserController {
     }
 
     @PostMapping("/user/findByUsername")
-    public ResponseEntity<User> findByUsername(@RequestBody String username) {
-        Optional<User> user = userRepo.findByUsername(username);
+    public ResponseEntity<User> findByUsername(@RequestBody FindUsername request) {
+        Optional<User> user = userRepo.findByUsername(request.username());
 
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -91,5 +91,8 @@ public class UserController {
         userRepo.deleteById(id);
 
         return ResponseEntity.ok(null);
+    }
+
+    public record FindUsername(String username) {
     }
 }
