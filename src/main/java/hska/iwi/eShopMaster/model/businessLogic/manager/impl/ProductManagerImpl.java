@@ -12,6 +12,7 @@ import java.util.List;
 public class ProductManagerImpl implements ProductManager {
 
 
+//    private final HttpDao httpDao = new HttpDao("http://product:8081");
     private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/product");
 
 
