@@ -20,7 +20,7 @@ public class ProductController {
         try {
             CategoryDto category = categoryRepo.getById(createProductDto.categoryId());
             var product = Product.builder().name(createProductDto.name())
-                    .category(category.getId())
+                    .categoryId(category.getId())
                     .price(createProductDto.price())
                     .details(createProductDto.description()).build();
             productRepo.save(product);
@@ -46,7 +46,7 @@ public class ProductController {
             if (category == null) {
                 return ResponseEntity.badRequest().body("Category not found");
             }
-            product.setCategory(category.getId());
+            product.setCategoryId(category.getId());
             productRepo.save(product);
             return ResponseEntity.status(201).build();
         } catch (Exception e) {

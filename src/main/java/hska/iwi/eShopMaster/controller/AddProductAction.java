@@ -18,7 +18,7 @@ public class AddProductAction extends ActionSupport {
 
     private String name = null;
     private String price = null;
-    private int categoryId = 0;
+    private double categoryId = 0;
     private String details = null;
     private List<Category> categories;
 
@@ -31,7 +31,7 @@ public class AddProductAction extends ActionSupport {
         if (user != null && (user.getRole().getTyp().equals("admin"))) {
 
             ProductManager productManager = new ProductManagerImpl();
-            int productId = productManager.addProduct(name, Double.parseDouble(price), categoryId,
+            int productId = productManager.addProduct(name, Double.parseDouble(price), (int) categoryId,
                     details);
 
             if (productId > 0) {
@@ -80,11 +80,11 @@ public class AddProductAction extends ActionSupport {
         this.price = price;
     }
 
-    public int getCategoryId() {
+    public double getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(double categoryId) {
         this.categoryId = categoryId;
     }
 

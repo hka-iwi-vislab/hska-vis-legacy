@@ -17,7 +17,7 @@ public class CategoryController {
 
     @DeleteMapping("/category/{id}")
     public ResponseEntity<String> deleteProducts(@PathVariable int id) {
-        List<Product> delete = productRepo.findAll().stream().filter(p -> p.getCategory() == id).toList();
+        List<Product> delete = productRepo.findAll().stream().filter(p -> p.getCategoryId() == id).toList();
         productRepo.deleteAll(delete);
         return ResponseEntity.status(200).build();
     }

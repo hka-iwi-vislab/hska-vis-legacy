@@ -32,5 +32,5 @@ public class Product implements java.io.Serializable {
     private String details;
 
     @Column(name = "category_id")
-    private int category;
+    private int categoryId;
 }

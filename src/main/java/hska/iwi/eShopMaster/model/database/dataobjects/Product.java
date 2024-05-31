@@ -24,8 +24,9 @@ public class Product implements java.io.Serializable {
 
     private double price;
 
-
     private Category category;
+
+    private int categoryId;
 
     private String details;
 
@@ -38,10 +39,23 @@ public class Product implements java.io.Serializable {
         this.category = category;
     }
 
+    public Product(String name, double price, int categoryId) {
+        this.name = name;
+        this.price = price;
+        this.categoryId = categoryId;
+    }
+
     public Product(String name, double price, Category category, String details) {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.details = details;
+    }
+
+    public Product(String name, double price, int categoryId, String details) {
+        this.name = name;
+        this.price = price;
+        this.categoryId = categoryId;
         this.details = details;
     }
 

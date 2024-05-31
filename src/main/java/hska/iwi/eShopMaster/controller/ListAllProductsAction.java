@@ -1,56 +1,65 @@
 package hska.iwi.eShopMaster.controller;
 
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
+import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
+import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 import hska.iwi.eShopMaster.model.database.dataobjects.Product;
 import hska.iwi.eShopMaster.model.database.dataobjects.User;
 
 import java.util.List;
 import java.util.Map;
-
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
+import java.util.stream.Collectors;
 
 public class ListAllProductsAction extends ActionSupport {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -94109228677381902L;
-	
-	User user;
-	private List<Product> products;
-	
-	public String execute() throws Exception{
-		String result = "input";
-		
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		user = (User) session.get("webshop_user");
-		
-		if(user != null){
-			System.out.println("list all products!");
-			ProductManager productManager = new ProductManagerImpl();
-			this.products = productManager.getProducts();
-			result = "success";
-		}
-		
-		return result;
-	}
-	
-	public User getUser() {
-		return user;
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = -94109228677381902L;
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	public List<Product> getProducts() {
-		return products;
-	}
+    User user;
+    private List<Product> products;
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
+    public String execute() throws Exception {
+        String result = "input";
+
+        Map<String, Object> session = ActionContext.getContext().getSession();
+        user = (User) session.get("webshop_user");
+
+        if (user != null) {
+            System.out.println("list all products!");
+            ProductManager productManager = new ProductManagerImpl();
+            CategoryManager categoryManager = new CategoryManagerImpl();
+            List<Product> products = productManager.getProducts();
+            List<Category> categories = categoryManager.getCategories();
+            this.products = products.stream().map(product -> {
+                product.setCategory(categories.stream().filter(category -> category.getId() == product.getCategoryId()).findFirst().get());
+                return product;
+            }).collect(Collectors.toList());
+            result = "success";
+        }
+
+        return result;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
 }
