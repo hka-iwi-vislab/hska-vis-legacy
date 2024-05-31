@@ -8,13 +8,14 @@ import okhttp3.*;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
 public class HttpDao {
     private final String url;
 
-    public <T> T post(String path, String requestBody, Class<T> clazz) throws URISyntaxException, IOException {
+    public <T> T post(String path, String requestBody, Class<T> clazz) throws IOException {
         String uri = url + path;
 
         OkHttpClient client = new OkHttpClient();
@@ -26,12 +27,12 @@ public class HttpDao {
                 .url(uri)
                 .post(body)
                 .build();
-
         return send(client, request, clazz);
     }
 
     public <T> T get(String path, Class<T> clazz) throws URISyntaxException, IOException {
         OkHttpClient client = new OkHttpClient();
+
         Request request = new Request.Builder()
                 .url(this.url + path)
                 .get()
@@ -59,10 +60,10 @@ public class HttpDao {
 
     private <T> T send(OkHttpClient client, Request request, Class<T> clazz) throws IOException {
         Response response = client.newCall(request).execute();
-        if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
-        Type type = new TypeToken<T>() {
-        }.getType();
+        if(response.code() == 404) return null;
+        else if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
         String s = response.body().string();
         System.out.println(s);
         System.out.println(response.body());
@@ -74,9 +75,11 @@ public class HttpDao {
 
     private <T> List<T> sendList(OkHttpClient client, Request request) throws IOException {
         Response response = client.newCall(request).execute();
-        if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
-        Type type = new TypeToken<List<T>>() {
+        if(response.code() == 404) return null;
+        else if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+        Type type = new TypeToken<ArrayList<T>>() {
         }.getType();
         String s = response.body().string();
         System.out.println(s);
