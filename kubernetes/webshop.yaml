@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webshop
+  name: webshop
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webshop
+  strategy: { }
+  template:
+    metadata:
+      name:
+        webshop
+      creationTimestamp: null
+      labels:
+        app: webshop
+    spec:
+      containers:
+        - image: maxilambda/webshop:latest
+          imagePullPolicy: IfNotPresent
+          name: webshop
+          ports:
+            - containerPort: 8888
+          resources: { }
+      restartPolicy: Always
+status: { }
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: webshop
+  name: webshop
+spec:
+  ports:
+    - name: "8888"
+      protocol: TCP
+      port: 8888
+      targetPort: 8888
+  selector:
+    app: webshop
+status:
+  loadBalancer: { }

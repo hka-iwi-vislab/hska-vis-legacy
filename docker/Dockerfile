@@ -1,4 +1,8 @@
-FROM maven:3.5.4-jdk-8-alpine as builder
+FROM amazoncorretto:21-al2023-jdk as build
+
+# Install Maven
+RUN yum update && \
+    yum install -y maven
 
 COPY ./pom.xml ./pom.xml
 COPY ./src ./src

@@ -17,16 +17,13 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 public class UserController {
-
     private final UserRepo userRepo;
     private final RoleRepo roleRepo;
 
     @PostMapping("user/register")
     public ResponseEntity<String> registerUser(@RequestBody @Validated UserDto user) {
-
         Role role = roleRepo.findByLevel(1);
-
-        userRepo.save(User.builder()
+        var newUser = userRepo.save(User.builder()
                 .role(role)
                 .firstname(user.firstname())
                 .lastname(user.lastname())
@@ -34,20 +31,34 @@ public class UserController {
                 .username(user.username())
                 .build());
 
-        return ResponseEntity.created(URI.create("/hallo")).build();
+        return ResponseEntity.created(URI.create("/user/" + newUser.getId())).build();
     }
 
-    @GetMapping("/user/find/{id}")
-    public ResponseEntity<User> findUser(@PathVariable int id){
+    @GetMapping("/user/{id}")
+    public ResponseEntity<User> findUser(@PathVariable int id) {
         Optional<User> user = userRepo.findById(id);
 
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/user/delete/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable int id){
-       userRepo.deleteById(id);
+    @PostMapping("/user/findByUsername")
+    public ResponseEntity<User> findByUsername(@RequestBody String username) {
+        Optional<User> user = userRepo.findByUsername(username);
 
-       return ResponseEntity.ok(null);
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/role/{level}")
+    public ResponseEntity<Role> getRoleByLevel(@PathVariable int level) {
+        Role role = roleRepo.findByLevel(level);
+        return ResponseEntity.ok(role);
+    }
+
+
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable int id) {
+        userRepo.deleteById(id);
+
+        return ResponseEntity.ok(null);
     }
 }
