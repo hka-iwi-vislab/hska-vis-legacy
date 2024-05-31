@@ -1,14 +1,12 @@
 package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import lombok.RequiredArgsConstructor;
 import okhttp3.*;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -49,13 +47,13 @@ public class HttpDao {
         return send(client, request, clazz);
     }
 
-    public <T> List<T> getList(String path) throws URISyntaxException, IOException {
+    public <T> List<T> getList(String path, Class<T[]> clazz) throws URISyntaxException, IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(this.url + path)
                 .get()
                 .build();
-        return sendList(client, request);
+        return sendList(client, request, clazz);
     }
 
     private <T> T send(OkHttpClient client, Request request, Class<T> clazz) throws IOException {
@@ -71,16 +69,13 @@ public class HttpDao {
         return result;
     }
 
-    private <T> List<T> sendList(OkHttpClient client, Request request) throws IOException {
+    private <T> List<T> sendList(OkHttpClient client, Request request, Class<T[]> clazz) throws IOException {
         Response response = client.newCall(request).execute();
 
         if (!response.isSuccessful()) return null;
-
-        Type type = new TypeToken<ArrayList<T>>() {
-        }.getType();
-        String s = response.body().string();
-        System.out.println(s);
-        System.out.println(response.body());
-        return new Gson().fromJson(s, type);
+        String body = response.body().string();
+        System.out.println(body);
+        T[] arr = new Gson().fromJson(body, clazz);
+        return Arrays.asList(arr); //or return Arrays.asList(new Gson().fromJson(s, clazz)); for a one-liner
     }
 }

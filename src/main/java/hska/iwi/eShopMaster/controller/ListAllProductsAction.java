@@ -2,17 +2,13 @@ package hska.iwi.eShopMaster.controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
-import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
-import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 import hska.iwi.eShopMaster.model.database.dataobjects.Product;
 import hska.iwi.eShopMaster.model.database.dataobjects.User;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ListAllProductsAction extends ActionSupport {
 
@@ -33,13 +29,7 @@ public class ListAllProductsAction extends ActionSupport {
         if (user != null) {
             System.out.println("list all products!");
             ProductManager productManager = new ProductManagerImpl();
-            CategoryManager categoryManager = new CategoryManagerImpl();
-            List<Product> products = productManager.getProducts();
-            List<Category> categories = categoryManager.getCategories();
-            this.products = products.stream().map(product -> {
-                product.setCategory(categories.stream().filter(category -> category.getId() == product.getCategoryId()).findFirst().get());
-                return product;
-            }).collect(Collectors.toList());
+            this.products = productManager.getProducts();
             result = "success";
         }
 

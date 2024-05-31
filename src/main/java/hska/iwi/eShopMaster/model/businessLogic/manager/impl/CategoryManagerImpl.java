@@ -16,7 +16,7 @@ public class CategoryManagerImpl implements CategoryManager {
 
     public List<Category> getCategories() {
         try {
-            return httpDao.getList("/categories");
+            return httpDao.getList("/categories", Category[].class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
