@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class ProductManagerImpl implements ProductManager {
+public class ProductManagerImpl  implements ProductManager {
 //    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/product");
     private final HttpDao httpDao = new HttpDao("http://product.default.svc.cluster.local:8081");
 
     @Override
     public List<Product> getProducts() {
         try {
-            return httpDao.getList("/products");
+            return httpDao.getList("/products", Product.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class HttpDao {
@@ -49,13 +50,13 @@ public class HttpDao {
         return send(client, request, clazz);
     }
 
-    public <T> List<T> getList(String path) throws URISyntaxException, IOException {
+    public <T> List<T> getList(String path, Class<T> clazz) throws URISyntaxException, IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(this.url + path)
                 .get()
                 .build();
-        return sendList(client, request);
+        return sendList(client, request, clazz);
     }
 
     private <T> T send(OkHttpClient client, Request request, Class<T> clazz) throws IOException {
@@ -73,17 +74,18 @@ public class HttpDao {
         return result;
     }
 
-    private <T> List<T> sendList(OkHttpClient client, Request request) throws IOException {
+    private <T> List<T> sendList(OkHttpClient client, Request request, Class<T> clazz) throws IOException {
         Response response = client.newCall(request).execute();
 
         if(response.code() == 404) return null;
         else if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
-        Type type = new TypeToken<ArrayList<T>>() {
+        Type type = new TypeToken<ArrayList<String>>() {
         }.getType();
         String s = response.body().string();
         System.out.println(s);
         System.out.println(response.body());
-        return new Gson().fromJson(s, type);
+        List<String> list = new Gson().fromJson(s, type);
+        return list.stream().map(o ->new Gson().fromJson(o, clazz)).collect(Collectors.toList());
     }
 }
