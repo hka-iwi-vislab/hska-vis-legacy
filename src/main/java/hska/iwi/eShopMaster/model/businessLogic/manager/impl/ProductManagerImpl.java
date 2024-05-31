@@ -1,66 +1,70 @@
 package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
-import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.ObjectCodec;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
-import hska.iwi.eShopMaster.model.database.dataAccessObjects.ProductDAO;
-import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 import hska.iwi.eShopMaster.model.database.dataobjects.Product;
+import lombok.RequiredArgsConstructor;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class ProductManagerImpl implements ProductManager {
-	private ProductDAO helper;
-	
-	public ProductManagerImpl() {
-		helper = new ProductDAO();
-	}
 
+
+	private final HttpDao httpDao = new HttpDao("http://prdoucts:8081");
+
+
+	@Override
 	public List<Product> getProducts() {
-		return helper.getObjectList();
-	}
-	
-	public List<Product> getProductsForSearchValues(String searchDescription,
-			Double searchMinPrice, Double searchMaxPrice) {	
-		return new ProductDAO().getProductListByCriteria(searchDescription, searchMinPrice, searchMaxPrice);
-	}
+        try {
+            return httpDao.getList("/products");
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+	@Override
 	public Product getProductById(int id) {
-		return helper.getObjectById(id);
-	}
-
-	public Product getProductByName(String name) {
-		return helper.getObjectByName(name);
-	}
-	
-	public int addProduct(String name, double price, int categoryId, String details) {
-		int productId = -1;
-		
-		CategoryManager categoryManager = new CategoryManagerImpl();
-		Category category = categoryManager.getCategory(categoryId);
-		
-		if(category != null){
-			Product product;
-			if(details == null){
-				product = new Product(name, price, category);	
-			} else{
-				product = new Product(name, price, category, details);
-			}
-			
-			helper.saveObject(product);
-			productId = product.getId();
+		try {
+			return httpDao.get("/product/"+id);
+		} catch (URISyntaxException e) {
+			throw new RuntimeException(e);
 		}
-			 
-		return productId;
-	}
-	
-
-	public void deleteProductById(int id) {
-		helper.deleteById(id);
 	}
 
+	@Override
+	public Product getProductByName(String name) {
+		return null;
+	}
+
+
+	@Override
+	public int addProduct(String name, double price, int categoryId, String details) {
+		try {
+			return httpDao.post("/product", new ObjectMapper().writeValueAsString(new UpsertProduct(details, name, price, categoryId)));
+		} catch (URISyntaxException | JsonProcessingException e) {
+			throw new RuntimeException(e);
+		}
+
+    }
+
+	@Override
+	public List<Product> getProductsForSearchValues(String searchValue, Double searchMinPrice, Double searchMaxPrice) {
+		return null;
+	}
+
+	@Override
 	public boolean deleteProductsByCategoryId(int categoryId) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
+	@Override
+	public void deleteProductById(int id) {
+
+	}
+
+	record UpsertProduct(String description, String name, Double price, int categoryId){}
 }

@@ -63,6 +63,7 @@ Source code is open source and released under the MIT license.
   * add executable to path 
   * open shell and execute istioctl install
 
+* run setup-kiali.cmd
 * run apply-config.cmd
 * default namespace
   * expose the nginx (reverse-proxy)
