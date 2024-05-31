@@ -20,7 +20,7 @@ spec:
         app: webshop
     spec:
       containers:
-        - image: nightdeath/webshop:latest
+        - image: maxilambda/webshop:latest
           name: webshop
           ports:
             - containerPort: 8080

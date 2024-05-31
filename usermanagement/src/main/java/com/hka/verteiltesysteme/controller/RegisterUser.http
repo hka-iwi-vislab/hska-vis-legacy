@@ -22,9 +22,9 @@ Content-Type: application/json
   "password2": "007"
 }
 ### sd
-POST http://localhost:8084/findByUsername
+POST http://localhost:8084/user/findByUsername
 Content-Type: application/json
 
 {
-  "username": "bames_jond2222w2"
+  "username": "admin"
 }
