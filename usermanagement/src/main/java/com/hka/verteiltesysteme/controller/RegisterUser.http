@@ -9,3 +9,15 @@ Content-Type: application/json
   "password1": "007",
   "password2": "007"
 }
+
+### Send POST request with json body
+POST http://localhost:5000/user/user/register
+Content-Type: application/json
+
+{
+  "username": "bames_jond22222",
+  "firstname": "james",
+  "lastname": "bond",
+  "password1": "007",
+  "password2": "007"
+}

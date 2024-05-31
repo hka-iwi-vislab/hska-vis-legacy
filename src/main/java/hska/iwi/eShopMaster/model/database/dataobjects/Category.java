@@ -3,13 +3,10 @@ package hska.iwi.eShopMaster.model.database.dataobjects;
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
 
 /**
  * This class contains details about categories.
  */
-@Entity
-@Table(name = "category")
 public class Category implements java.io.Serializable {
 
 	/**
@@ -32,9 +29,6 @@ public class Category implements java.io.Serializable {
 		this.products = products;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
 	public int getId() {
 		return this.id;
 	}
@@ -43,7 +37,6 @@ public class Category implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "name", nullable = false)
 	public String getName() {
 		return this.name;
 	}
@@ -52,7 +45,6 @@ public class Category implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 	public Set<Product> getProducts() {
 		return this.products;
 	}

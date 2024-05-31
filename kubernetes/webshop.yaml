@@ -6,7 +6,7 @@ metadata:
     app: webshop
   name: webshop
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: webshop
@@ -24,7 +24,7 @@ spec:
           imagePullPolicy: IfNotPresent
           name: webshop
           ports:
-            - containerPort: 8888
+            - containerPort: 8080
           resources: { }
       restartPolicy: Always
 status: { }
@@ -40,10 +40,10 @@ metadata:
   name: webshop
 spec:
   ports:
-    - name: "8888"
+    - name: "8080"
       protocol: TCP
-      port: 8888
-      targetPort: 8888
+      port: 8080
+      targetPort: 8080
   selector:
     app: webshop
 status:

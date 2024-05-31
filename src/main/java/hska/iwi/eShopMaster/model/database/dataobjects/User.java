@@ -1,13 +1,10 @@
 package hska.iwi.eShopMaster.model.database.dataobjects;
 
 
-import javax.persistence.*;
 
 /**
  * This class contains the users of the webshop.
  */
-@Entity
-@Table(name = "customer")
 public class User implements java.io.Serializable {
 
 	/**
@@ -16,29 +13,16 @@ public class User implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
 	private int id;
 
-	
-	@Column(name = "username", unique = true, nullable = false)
 	private String username;
 
-	
-	@Column(name = "name", nullable = false)
 	private String firstname;
 
-	
-	@Column(name = "lastname", nullable = false)
 	private String lastname;
 
-	
-	@Column(name = "password", nullable = false)
 	private String password;
 
-	@ManyToOne()
-	@JoinColumn(name = "role", nullable = false)	
 	private Role role;
 
 	public User() {

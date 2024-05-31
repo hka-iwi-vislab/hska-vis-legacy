@@ -33,3 +33,9 @@ Content-Type: application/json
 {
   "name": "random stuff2"
 }
+###
+POST http://localhost:5000/user/user/register
+Content-Type:  application/json
+{
+
+}

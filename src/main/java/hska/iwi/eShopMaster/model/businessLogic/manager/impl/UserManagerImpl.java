@@ -15,7 +15,8 @@ import java.net.URISyntaxException;
 
 @RequiredArgsConstructor
 public class UserManagerImpl implements UserManager {
-    private final HttpDao httpDao = new HttpDao("http://user:8080");
+    private final HttpDao httpDao = new HttpDao("http://localhost:8084");
+//    private final HttpDao httpDao = new HttpDao("http://user:8084");
 
     public void registerUser(String username, String name, String lastname, String password, Role role) {
         User user = new User(username, name, lastname, password, role);

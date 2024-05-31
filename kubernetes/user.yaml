@@ -34,7 +34,7 @@ spec:
                   key: db-root-password
                   name: db-secret
           ports:
-            - containerPort: 8080
+            - containerPort: 8084
           resources: { }
       restartPolicy: Always
 status: { }
@@ -50,10 +50,10 @@ metadata:
   name: user
 spec:
   ports:
-    - name: "8081"
+    - name: "8084"
       protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8084
+      targetPort: 8084
   selector:
     app: user
 status:

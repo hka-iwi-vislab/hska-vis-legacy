@@ -1,13 +1,10 @@
 package hska.iwi.eShopMaster.model.database.dataobjects;
 
 
-import javax.persistence.*;
 
 /**
  * This class contains details about products.
  */
-@Entity
-@Table(name = "product")
 public class Product implements java.io.Serializable {
 
 	/**
@@ -15,23 +12,15 @@ public class Product implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
 	private int id;
 
-	@Column(name = "name")
 	private String name;
 
-	@Column(name = "price")
 	private double price;
 
 	
-	@ManyToOne
-	@JoinColumn(name = "category_id")
 	private Category category;
 
-	@Column(name = "details")
 	private String details;
 
 	public Product() {

@@ -3,7 +3,7 @@ services:
   legacywebshop:
     build:
       context: ./
-      dockerfile: ./docker/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "8888:8080"
     networks:
@@ -14,7 +14,7 @@ services:
   web-shop-db-image:
     build:
       context: ./
-      dockerfile: ./docker/DockerfileMySQL
+      dockerfile: DockerfileMySQL
     volumes:
       - "./.data/db:/var/lib/mysql"
     environment:
@@ -28,6 +28,46 @@ services:
       local_dev_net:
         aliases:
           - web-shop-db-image
+#  productmanagement:
+#    build:
+#      context: ./productmanagement
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - web-shop-db-image
+#      - categorymanagement
+#    ports:
+#      - "8081:8081"
+#    networks:
+#      local_dev_net:
+#        aliases:
+#          - productmanagement
+#
+#  categorymanagement:
+#    build:
+#      context: ./categorymanagement
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - web-shop-db-image
+#    ports:
+#      - "8082:8082"
+#    networks:
+#      local_dev_net:
+#        aliases:
+#          - categorymanagement
+#
+#  usermanagement:
+#    build:
+#      context: ./usermanagement
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - web-shop-db-image
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      local_dev_net:
+#        aliases:
+#          - usermanagement
+#
 networks:
   local_dev_net:
     driver: bridge
