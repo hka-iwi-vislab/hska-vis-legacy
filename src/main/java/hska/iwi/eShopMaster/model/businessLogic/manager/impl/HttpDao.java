@@ -1,62 +1,65 @@
 package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import lombok.RequiredArgsConstructor;
+import okhttp3.*;
 
 import java.io.IOException;
-import java.net.URI;
+import java.lang.reflect.Type;
 import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @RequiredArgsConstructor
 public class HttpDao {
     private final String url;
 
-    public <T> T post(String path, String requestBody) throws URISyntaxException {
+    public <T> T post(String path, String requestBody) throws URISyntaxException, IOException {
         String uri = url + path;
-        HttpRequest request = HttpRequest.newBuilder(new URI(uri)).POST(HttpRequest.BodyPublishers.ofString(requestBody)).build();
-        return send(request);
+
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = RequestBody.create(requestBody, MediaType.parse("application/json; charset=utf-8"));
+        Request request = new Request.Builder()
+                .url(uri)
+                .post(body)
+                .build();
+
+        return send(client, request);
     }
 
-    public <T> T get(String path) throws URISyntaxException {
-        String uri = url + path;
-        HttpRequest request = HttpRequest.newBuilder(new URI(uri)).GET().build();
-        return send(request);
+    public <T> T get(String path) throws URISyntaxException, IOException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(this.url + path)
+                .get()
+                .build();
+        return send(client, request);
     }
 
-    public <T> List<T> getList(String path) throws URISyntaxException {
-        String uri = url + path;
-        HttpRequest request = HttpRequest.newBuilder(new URI(uri)).GET().build();
-        return sendList(request);
+    public <T> List<T> getList(String path) throws URISyntaxException, IOException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(this.url + path)
+                .get()
+                .build();
+        return sendList(client, request);
     }
 
-    private <T> T send(HttpRequest request) {
-        try (HttpClient client = HttpClient.newHttpClient()) {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
-            T responseDto = new ObjectMapper().readValue(response.body(), new TypeReference<>() {
-            });
-            System.out.println(responseDto.toString());
-            return responseDto;
-        } catch (InterruptedException | IOException e) {
-            throw new RuntimeException(e);
-        }
+    private <T> T send(OkHttpClient client, Request request) throws IOException {
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+        Type type = new TypeToken<T>() {
+        }.getType();
+        return new Gson().fromJson(response.body().toString(), type);
     }
 
-    private <T> List<T> sendList(HttpRequest request) {
-        try (HttpClient client = HttpClient.newHttpClient()) {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
-            List<T> responseDto = new ObjectMapper().readValue(response.body(), new TypeReference<>() {
-            });
-            System.out.println(responseDto.toString());
-            return responseDto;
-        } catch (InterruptedException | IOException e) {
-            throw new RuntimeException(e);
-        }
+    private <T> List<T> sendList(OkHttpClient client, Request request) throws IOException {
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+        Type type = new TypeToken<List<T>>() {
+        }.getType();
+        return new Gson().fromJson(response.body().toString(), type);
     }
 }

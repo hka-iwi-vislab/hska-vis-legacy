@@ -1,70 +1,74 @@
 package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.ObjectCodec;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
 import hska.iwi.eShopMaster.model.database.dataobjects.Product;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.net.URISyntaxException;
 import java.util.List;
 
 @RequiredArgsConstructor
 public class ProductManagerImpl implements ProductManager {
 
 
-	private final HttpDao httpDao = new HttpDao("http://prdoucts:8081");
+    private final HttpDao httpDao = new HttpDao("http://localhost:5000/product");
 
 
-	@Override
-	public List<Product> getProducts() {
+    @Override
+    public List<Product> getProducts() {
         try {
             return httpDao.getList("/products");
-        } catch (URISyntaxException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-	@Override
-	public Product getProductById(int id) {
-		try {
-			return httpDao.get("/product/"+id);
-		} catch (URISyntaxException e) {
-			throw new RuntimeException(e);
-		}
-	}
+    @Override
+    public Product getProductById(int id) {
+        try {
+            return httpDao.get("/product/" + id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-	@Override
-	public Product getProductByName(String name) {
-		return null;
-	}
+    @Override
+    public Product getProductByName(String name) {
+        return null;
+    }
 
 
-	@Override
-	public int addProduct(String name, double price, int categoryId, String details) {
-		try {
-			return httpDao.post("/product", new ObjectMapper().writeValueAsString(new UpsertProduct(details, name, price, categoryId)));
-		} catch (URISyntaxException | JsonProcessingException e) {
-			throw new RuntimeException(e);
-		}
+    @Override
+    public int addProduct(String name, double price, int categoryId, String details) {
+        try {
+            return httpDao.post("/product", new Gson().toJson(new UpsertProduct(details, name, price, categoryId)));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
-	@Override
-	public List<Product> getProductsForSearchValues(String searchValue, Double searchMinPrice, Double searchMaxPrice) {
-		return null;
-	}
+    @Override
+    public List<Product> getProductsForSearchValues(String searchValue, Double searchMinPrice, Double searchMaxPrice) {
+        return null;
+    }
 
-	@Override
-	public boolean deleteProductsByCategoryId(int categoryId) {
-		return false;
-	}
+    @Override
+    public boolean deleteProductsByCategoryId(int categoryId) {
+        return false;
+    }
 
-	@Override
-	public void deleteProductById(int id) {
+    @Override
+    public void deleteProductById(int id) {
 
-	}
+    }
 
-	record UpsertProduct(String description, String name, Double price, int categoryId){}
+    @Data
+    class UpsertProduct {
+        private final String description;
+        private final String name;
+        private final Double price;
+        private final int categoryId;
+    }
 }
