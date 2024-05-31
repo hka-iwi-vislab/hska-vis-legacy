@@ -42,7 +42,7 @@ public class SearchAction extends ActionSupport{
 		// Get user:
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		user = (User) session.get("webshop_user");
-		ActionContext.getContext().withLocale(Locale.US);
+		ActionContext.getContext().setLocale(Locale.US);
 
 		if(user != null){
 			// Search products and show results:
