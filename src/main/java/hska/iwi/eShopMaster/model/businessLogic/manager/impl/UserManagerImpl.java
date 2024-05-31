@@ -1,13 +1,10 @@
 package hska.iwi.eShopMaster.model.businessLogic.manager.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import hska.iwi.eShopMaster.model.businessLogic.manager.UserManager;
 import hska.iwi.eShopMaster.model.database.dataobjects.Role;
 import hska.iwi.eShopMaster.model.database.dataobjects.User;
 import lombok.RequiredArgsConstructor;
-
-import java.net.URISyntaxException;
 
 /**
  * @author knad0001
@@ -15,15 +12,14 @@ import java.net.URISyntaxException;
 
 @RequiredArgsConstructor
 public class UserManagerImpl implements UserManager {
-    private final HttpDao httpDao = new HttpDao("http://localhost:8084");
-//    private final HttpDao httpDao = new HttpDao("http://user:8084");
+    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/user");
 
     public void registerUser(String username, String name, String lastname, String password, Role role) {
         User user = new User(username, name, lastname, password, role);
 
         try {
-            httpDao.post("/user/register", new ObjectMapper().writeValueAsString(user));
-        } catch (URISyntaxException | JsonProcessingException e) {
+            httpDao.post("/user/register", new Gson().toJson(user));
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -34,8 +30,8 @@ public class UserManagerImpl implements UserManager {
             return null;
         }
         try {
-            return httpDao.post("/user/findByUsername", new ObjectMapper().writeValueAsString(username));
-        } catch (URISyntaxException | JsonProcessingException e) {
+            return httpDao.post("/user/findByUsername", new Gson().toJson(username));
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -44,7 +40,7 @@ public class UserManagerImpl implements UserManager {
         try {
             httpDao.delete("/user/" + id);
             return true;
-        } catch (URISyntaxException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -52,7 +48,7 @@ public class UserManagerImpl implements UserManager {
     public Role getRoleByLevel(int level) {
         try {
             return httpDao.get("/role/" + level);
-        } catch (URISyntaxException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

@@ -36,6 +36,15 @@ public class HttpDao {
         return send(client, request);
     }
 
+    public <T> T delete(String path) throws URISyntaxException, IOException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(this.url + path)
+                .delete()
+                .build();
+        return send(client, request);
+    }
+
     public <T> List<T> getList(String path) throws URISyntaxException, IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()

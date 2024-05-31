@@ -12,7 +12,7 @@ import java.util.List;
 public class ProductManagerImpl implements ProductManager {
 
 
-    private final HttpDao httpDao = new HttpDao("http://localhost:5000/product");
+    private final HttpDao httpDao = new HttpDao("http://reverse-proxy:5000/product");
 
 
     @Override
@@ -61,7 +61,11 @@ public class ProductManagerImpl implements ProductManager {
 
     @Override
     public void deleteProductById(int id) {
-
+        try {
+            httpDao.delete("/product/" + id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Data
