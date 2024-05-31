@@ -1,13 +1,7 @@
-FROM amazoncorretto:21-al2023-jdk as build
-
-# Install Maven
-RUN yum update && yum install -y maven
-
-#WORKDIR /app
+FROM maven:3.5.4-jdk-8-alpine as builder
 
 COPY ./pom.xml ./pom.xml
 COPY ./src ./src
-COPY ./conf ./conf
 RUN mvn clean package
 
 FROM tomcat:9-jre8
